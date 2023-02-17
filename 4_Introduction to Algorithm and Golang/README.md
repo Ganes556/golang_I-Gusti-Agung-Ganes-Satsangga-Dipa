@@ -1,5 +1,7 @@
 # **Resume Materi Indroduction to Algorithm and Golang**
 
+## **Pada materi basic programming terdapat 3 poin utama yaitu:**
+
 ## **1. Pengertian Algoritma dan Karakteristiknya**
 
 Algoritma adalah prosedur komputasi yang didefinisikan dengan baik, serta harus memiliki batasan awalan dan akhiran, setiap tahapan instruksinya harus terdefinisi dengan baik, dan harus efektif dan efisien
