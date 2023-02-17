@@ -4,11 +4,11 @@
 
 ## **1. Golang**
 
-Golang adalah bahasa pemrograman open-source yang dikembangkan oleh tim Google pada tahun 2007. Tujuan dari pengembangan bahasa ini adalah untuk memudahkan proses development, sederhana, handal, dan efisien. Golang dirilis ke publik pada tahun 2009 dan terus dikembangkan hingga saat ini. Golang dikembangkan oleh tim yang terdiri dari Rob Pike, Ken Thompson, Robert Griesemer, Ian Lenz Taylor dan Russ Cox. Bahasa ini sering digunakan untuk membuat aplikasi e-commerce, musik player, sosial media, FPI, game engine, dan lain-lain.
+Golang adalah bahasa pemrograman open-source yang dikembangkan oleh tim Google pada tahun 2007. Tujuan dari pengembangan bahasa ini adalah untuk memudahkan proses development, sederhana, handal, dan efisien. Golang dirilis ke publik pada tahun 2009. Golang dikembangkan oleh tim yang terdiri dari Rob Pike, Ken Thompson, Robert Griesemer, Ian Lenz Taylor dan Russ Cox. Bahasa ini sering digunakan untuk membuat aplikasi e-commerce, musik player, sosial media, FPI, game engine, dan lain-lain.
 
 ## **2. Cara Instal Golang di VS Code**
 
-Dapat dengan cara mengunduh [VS Code](https://code.visualstudio.com/download) dan menginstalnya, mengunduh [Golang](https://go.dev/dl/) dan menginstalnya di. Kemudian, setting environment path golang yang di sesuaikan pada os masing-masing.
+Dapat dengan cara Mengunduh [VS Code](https://code.visualstudio.com/download) dan menginstalnya, mengunduh [Golang](https://go.dev/dl/) dan menginstalnya di. Kemudian, setting environment path golang yang di sesuaikan pada os masing-masing.
 
 ## 3. **Pada materi ini juga dijelaskan**:
 
