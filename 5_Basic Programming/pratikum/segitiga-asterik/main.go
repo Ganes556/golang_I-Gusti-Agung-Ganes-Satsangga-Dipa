@@ -7,19 +7,19 @@ func main() {
 	var n int
 	
 	fmt.Print("Input: ")
-
+	
 	fmt.Scan(&n)
+	
+	fmt.Println("Output: ")
 
-	for i:=0; i < n; i++{
+	for i:=1; i <= n; i++{
 
-		for j:=0; j < n-i; j++{	
+		for j:=1; j <= n-i; j++{	
 			fmt.Print(" ")
 		}
-		
-		for k:= 1; k < (i+1)*2; k++{
-			fmt.Print("*")
+		for k:= 1; k <= i; k++{
+			fmt.Print("* ")
 		}
-		
 		fmt.Println()
 
 	}
