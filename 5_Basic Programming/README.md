@@ -32,4 +32,5 @@ Dapat dengan cara Mengunduh [VS Code](https://code.visualstudio.com/download) da
   - `<nama_variabel> := <nilai>`
 - Zero value tiap variabel, dimana **Boolean** : false, **Number** : (float : 0.0), (int : 0), (complex : 0i), **String** : ""
 - Constants variabel yang nilainya tidak dapat diubah dan ada 2 yakni Single Constant dan Multiple Constant
-- Serta operator expression dan perbedaan antara operand (nilai yang akan dioperasikan oleh operator), operator (melakukan operasi pada variabel, literal, dan ekspresi), dan expression (kombinasi antara konstanta, variabel, fungsi, dan operator yang mengembalikan sebuah nilai).
+- perbedaan antara operand (nilai yang akan dioperasikan oleh operator), operator (melakukan operasi pada variabel, literal, dan ekspresi), dan expression (kombinasi antara konstanta, variabel, fungsi, dan operator yang mengembalikan sebuah nilai).
+- Serta control structure yang merupakan struktur yang digunakan untuk mengatur alur program yang dimana pada golang hanya terdapat **if**, **switch** dan **for**
