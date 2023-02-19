@@ -7,10 +7,9 @@ import (
 func main() {
 	
 	var n int = -1
-
 	fmt.Print("Masukan nilai: ")
 	fmt.Scan(&n)
-	
+		
 	if n < 0 || n > 100 {
 		fmt.Println("Nilai Invalid")
 	}else if n <= 34{
