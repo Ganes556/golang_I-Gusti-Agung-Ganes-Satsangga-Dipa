@@ -1,8 +1,10 @@
+# **Rangkuman Materi Version Control and Branch Management (Git)**
+
 # Version Control System (VCS)
 
 Version Control adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. VCS memungkinkan kita untuk melihat perubahan apa saja yang terjadi pada file atau sekumpulan file, kapan perubahan tersebut terjadi, siapa yang melakukan perubahan tersebut, dan mengembalikan file ke versi sebelumnya.
 
-# Sejarah Version Control System
+# Sejarah Singkat Version Control
 
 1.  Local Version Control (Single User)
 
@@ -36,7 +38,7 @@ Version Control adalah sebuah sistem yang digunakan untuk mengelola perubahan pa
       - Mercurial - 2005
       - Bazaar - 2005
 
-# Dasar Staging Area
+# 3 Dasar Staging Area
 
 1. Working Directory : tempat kerja kita saat ini
 2. Staging Area : tempat untuk menyimpan perubahan yang akan di commit
