@@ -2,27 +2,27 @@
 
 # Version Control System (VCS)
 
-Version Control adalah sebuah sistem yang digunakan untuk melacak atau mentracking suatu perubahan pada sebuah file atau sekumpulan file. Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. VCS memungkinkan kita untuk melihat perubahan apa saja yang terjadi pada file atau sekumpulan file, kapan perubahan tersebut terjadi, siapa yang melakukan perubahan tersebut, dan mengembalikan file ke versi sebelumnya.
+Version Control adalah sebuah sistem yang digunakan untuk melacak atau mentracking suatu perubahan pada sekumpulan file. Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. VCS memungkinkan kita untuk melihat perubahan apa saja yang terjadi pada file, kapan perubahan tersebut terjadi, siapa yang melakukan perubahan tersebut, dan mengembalikan file ke versi sebelumnya.
 
 # Sejarah Singkat Version Control
 
 1.  Local Version Control (Single User)
 
     - Kelebihan :
-      - mudah digunakan
-      - tidak memerlukan koneksi internet
+      - Mudah digunakan
+      - Tidak memerlukan koneksi internet
     - Kekurangan :
-      - tidak ada backup
-      - jika terjadi kerusakan pada database, maka tidak bisa melakukan perubahan pada file
+      - Tidak ada backup
+      - Jika terjadi kerusakan pada database, maka tidak bisa melakukan perubahan pada file
     - Contoh:
       - SCCS - 1972 hanya untuk sistem operasi Unix
       - RCS - 1982 cross platform, hanya untuk text
 
 2.  Centralize (Client-Server)
     - Kelebihan :
-      - mudah digunakan, tidak memerlukan koneksi internet
+      - Mudah digunakan, tidak memerlukan koneksi internet
     - Kekurangan :
-      - jika server down, maka tidak bisa melakukan perubahan pada file
+      - Jika server down, maka tidak bisa melakukan perubahan pada file
     - Contoh :
       - CVS - 1995 hanya untuk file
       - Perforce - 1995
@@ -30,9 +30,9 @@ Version Control adalah sebuah sistem yang digunakan untuk melacak atau mentracki
       - Microsoft Team Foundation Server - 2005
 3.  Distributed (Peer-to-Peer)
     - Kelebihan :
-      - jika server down, tetap bisa melakukan perubahan pada file
+      - Jika server down, tetap bisa melakukan perubahan pada file
     - Kekurangan :
-      - memerlukan koneksi internet
+      - Memerlukan koneksi internet
     - Contoh :
       - Git - 2005
       - Mercurial - 2005
@@ -40,9 +40,9 @@ Version Control adalah sebuah sistem yang digunakan untuk melacak atau mentracki
 
 # 3 Dasar Staging Area
 
-1. Working Directory : tempat kerja kita saat ini
-2. Staging Area : tempat untuk menyimpan perubahan yang akan di commit
-3. Repository : tempat penyimpanan file yang sudah di commit
+1. Working Directory : Tempat kerja kita saat ini
+2. Staging Area : Tempat untuk menyimpan perubahan yang akan di commit
+3. Repository : Tempat penyimpanan file yang sudah di commit
 
 # Command git
 
