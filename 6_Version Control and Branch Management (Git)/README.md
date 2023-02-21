@@ -2,6 +2,7 @@
 
 # Version Control System (VCS)
 
+
 Version Control adalah sebuah sistem yang digunakan untuk melacak atau mentracking suatu perubahan pada sekumpulan file. Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. VCS memungkinkan kita untuk melihat perubahan apa saja yang terjadi pada file, kapan perubahan tersebut terjadi, siapa yang melakukan perubahan tersebut, dan mengembalikan file ke versi sebelumnya.
 
 # Sejarah Singkat Version Control
