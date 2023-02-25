@@ -11,6 +11,7 @@ func Mapping(slice []string) map[string]int {
 }
 
 func main() {
-	arr := []string{"asd", "qwe", "asd", "adi", "qwe", "qwe"}
-	fmt.Println(Mapping(arr))
+	fmt.Println(Mapping([]string{"asd", "qwe", "asd", "adi", "qwe", "qwe"}))
+	fmt.Println(Mapping([]string{"asd","qwe","asd"}))
+	fmt.Println(Mapping([]string{}))
 }
