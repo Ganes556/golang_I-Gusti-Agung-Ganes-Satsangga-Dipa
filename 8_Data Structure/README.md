@@ -122,5 +122,5 @@
     // memanggil sekaligus memasukan hasil fungsi single return ke variabel
     param1 := fungsi2("param1")
     // memanggil sekaligus memasukan hasil fungsi multi return ke variabel
-    param3, param4 := fungsi3("param1",1)
+    param2, param3 := fungsi3("param1",1)
   ```
