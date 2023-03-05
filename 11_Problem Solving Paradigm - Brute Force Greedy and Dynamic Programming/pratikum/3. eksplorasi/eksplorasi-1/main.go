@@ -9,7 +9,7 @@ type romans struct {
 
 func num2Rom(num int) string {
 	if num <= 0 {
-		return "Invalid num"
+		return "Invalid number"
 	}
 
 	romans := []romans{
