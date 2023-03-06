@@ -30,8 +30,8 @@ func MergeSort(productPrice []int) []int {
 		}else {
 			mergedArr = append(mergedArr, right[0])
 			right = right[1:]
-			
 		}
+		
 	}
 	return mergedArr
 
