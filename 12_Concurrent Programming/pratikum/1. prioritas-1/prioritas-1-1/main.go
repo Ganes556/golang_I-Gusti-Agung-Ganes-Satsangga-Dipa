@@ -6,9 +6,8 @@ import (
 )
 
 func kelipatanX(x int) {
-	for {
-		fmt.Println(x)
-		x +=x
+	for i:= 1;; i++{
+		fmt.Println(x * i)
 		time.Sleep(3 * time.Second)
 	}
 }
