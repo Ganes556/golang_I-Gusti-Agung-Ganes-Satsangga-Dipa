@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 )
 
@@ -32,6 +33,7 @@ func freqChar(text string, goroutines int) map[rune]int {
 }
 
 func main() {
+	runtime.GOMAXPROCS(2)
 	text := "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	for r, freq := range freqChar(text, 3){
 		fmt.Printf("%c: %d\n", r, freq)

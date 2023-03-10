@@ -13,8 +13,6 @@ func Kelipatan3SebanyakN(n int) int{
 	for i := 0; i < n; i++ {
 		wg.Add(1)
 		go func(){
-			// mutex.Lock akan mencegah variabel x agar hanya satu goroutine yang dapat mengaksesnya
-			// dan mencegah terjadinya race condition saat variabel x diubah
 			mute.Lock()
 			x += 3
 			mute.Unlock()
