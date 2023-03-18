@@ -5,7 +5,7 @@ if [ -z "$1" ] && [ -z "$2" ] && [ -z "$3" ]; then
   exit 1
 fi
 
-parrent_path="$1 $(date)"
+parrent_path="$1 at $(date)"
 
 mkdir "$parrent_path"
 
