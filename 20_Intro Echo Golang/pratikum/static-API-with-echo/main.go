@@ -123,7 +123,7 @@ func CreateUserController(c echo.Context) error {
   })
 }
 
-// create new multiple user
+// create new multiple user (tambahan)
 func CreateUsersController(c echo.Context) error {
 	usersReq := []User{}
 	if err := c.Bind(&usersReq); err != nil {
@@ -156,7 +156,7 @@ func main() {
   e.POST("/users", CreateUserController)
 	e.PUT("/users/:id", UpdateUserController)
 	e.DELETE("/users/:id", DeleteUserController)
-	e.POST("/users/multiple", CreateUsersController)
+	e.POST("/users/multiple", CreateUsersController) // tambahan
 
   // start the server, and log if it fails
   e.Logger.Fatal(e.Start(":8000"))

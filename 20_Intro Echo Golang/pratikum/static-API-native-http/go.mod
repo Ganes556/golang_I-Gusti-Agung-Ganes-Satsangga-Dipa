@@ -1,3 +1,3 @@
-module native-static.com
+module static-API-native-http
 
 go 1.20

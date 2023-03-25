@@ -1,4 +1,4 @@
-module static-api.com
+module static-API-with-echo
 
 go 1.20
 
