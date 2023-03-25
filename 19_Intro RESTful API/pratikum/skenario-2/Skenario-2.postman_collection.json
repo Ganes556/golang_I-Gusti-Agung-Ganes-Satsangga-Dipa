@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "a109a8bd-2526-42ba-b8f6-43393fa254fb",
+		"name": "Skenario-2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18459708"
+	},
+	"item": [
+		{
+			"name": "Menampilkan seluruh buku",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Menambahkan buku",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"client_id\": 1234,\r\n  \"client_key\": \"CLIENT01\",\r\n  \"client_secret\": \"SECRET01\",\r\n  \"status\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mengubah buku",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1234,\r\n  \"title\": \"Judul Buku Satu\",\r\n  \"isbn\": \"1-234-5678-9101112-13\",\r\n  \"writer\": \"Dr. Who\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/book/1234",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"book",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Menghapus buku",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/book/1234",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"book",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://virtserver.swaggerhub.com/sepulsa/RentABook-API/1.0.0",
+			"type": "string"
+		}
+	]
+}
