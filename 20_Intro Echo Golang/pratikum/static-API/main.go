@@ -30,7 +30,14 @@ func GetUsersController(c echo.Context) error {
 func GetUserController(c echo.Context) error {
   // your solution here
 	
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, err := strconv.Atoi(c.Param("id"))
+	
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"messages": "id must be number",
+		})
+	}
+	
 	index, userRes := SearchUser(id)
 
 	if index == -1 {
@@ -50,7 +57,12 @@ func GetUserController(c echo.Context) error {
 func DeleteUserController(c echo.Context) error {
   // your solution here
 
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"messages": "id must be number",
+		})
+	}
 	index, _ := SearchUser(id)
 	if index == -1 {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
@@ -69,7 +81,13 @@ func UpdateUserController(c echo.Context) error {
   // your solution here
 	user := User{}
 	c.Bind(&user)
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"messages": "id must be number",
+		})
+	}
+
 	index, _ := SearchUser(id)
 	if index == -1 {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
@@ -110,7 +128,7 @@ func CreateUsersController(c echo.Context) error {
 	usersReq := []User{}
 	if err := c.Bind(&usersReq); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"messages": "failed create multiple user"})
+			"messages": "invalid request body"})
 	}
 	for i, user := range usersReq {
 		if len(users) == 0 {

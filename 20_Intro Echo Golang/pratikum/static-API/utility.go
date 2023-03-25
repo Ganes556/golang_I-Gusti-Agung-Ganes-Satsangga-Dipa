@@ -17,3 +17,4 @@ func SearchUser(id int) (int, User) {
 	}
 	return -1, User{}
 }
+
