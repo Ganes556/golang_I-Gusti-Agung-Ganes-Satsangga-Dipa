@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a109a8bd-2526-42ba-b8f6-43393fa254fb",
+		"_postman_id": "6a195181-2af2-4813-b944-1bb17efe3c3d",
 		"name": "Skenario-2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18459708"
@@ -52,6 +52,9 @@
 		{
 			"name": "Mengubah buku",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -116,6 +119,18 @@
 		}
 	],
 	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://app.swaggerhub.com/proxy",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "proxy-token",
+			"value": "4dg2sad",
+			"type": "string",
+			"disabled": true
+		},
 		{
 			"key": "base_url",
 			"value": "https://virtserver.swaggerhub.com/sepulsa/RentABook-API/1.0.0",

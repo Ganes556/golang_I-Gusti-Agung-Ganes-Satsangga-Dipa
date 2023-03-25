@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"test111\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+					"raw": "{\r\n    \"name\": \"test\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -29,35 +29,6 @@
 					"port": "8000",
 					"path": [
 						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "menambah multiple user",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"name\": \"test1\",\r\n        \"email\": \"test123@gmail.com\",\r\n        \"password\": \"secre23t\"\r\n    },\r\n    {\r\n        \"name\": \"test99\",\r\n        \"email\": \"test91@gmail.com\",\r\n        \"password\": \"secret99\"\r\n    }\r\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/users/multiple",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"users",
-						"multiple"
 					]
 				}
 			},
@@ -88,7 +59,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/users/2",
+					"raw": "http://localhost:8000/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -96,7 +67,36 @@
 					"port": "8000",
 					"path": [
 						"users",
-						"2"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mengedit user by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TestingUpdate\",\r\n    \"email\": \"update123@gmail.com\",\r\n    \"password\": \"diupdate\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"users",
+						"1"
 					]
 				}
 			},
@@ -108,7 +108,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/users/3",
+					"raw": "http://localhost:8000/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -116,36 +116,7 @@
 					"port": "8000",
 					"path": [
 						"users",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "mengedit user",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Ganas333\",\r\n    \"email\": \"gaspoll@gmail.com\",\r\n    \"password\": \"ujinyali333\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/users/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"users",
-						"2"
+						"1"
 					]
 				}
 			},

@@ -38,7 +38,7 @@ func GetUserController(c echo.Context) error {
 		})
 	}
 	
-	index, userRes := SearchUser(id)
+	index, userRes := SearchUserById(id)
 
 	if index == -1 {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
@@ -63,7 +63,7 @@ func DeleteUserController(c echo.Context) error {
 			"messages": "id must be number",
 		})
 	}
-	index, _ := SearchUser(id)
+	index, _ := SearchUserById(id)
 	if index == -1 {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
 			"messages": "user not found",
@@ -88,7 +88,7 @@ func UpdateUserController(c echo.Context) error {
 		})
 	}
 
-	index, _ := SearchUser(id)
+	index, _ := SearchUserById(id)
 	if index == -1 {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
 			"messages": "user not found",
@@ -109,7 +109,16 @@ func CreateUserController(c echo.Context) error {
   // binding data
   user := User{}
   c.Bind(&user)
-
+	if user.Email == "" || user.Name == "" || user.Password == "" {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"messages": "invalid request body",
+		})
+	}
+	if CheckUserByEmail(user.Email) {
+		return c.JSON(http.StatusConflict, map[string]interface{}{
+			"messages": "user already exist",
+		})
+	}
   if len(users) == 0 {
     user.Id = 1
   } else {
@@ -123,30 +132,6 @@ func CreateUserController(c echo.Context) error {
   })
 }
 
-// create new multiple user (tambahan)
-func CreateUsersController(c echo.Context) error {
-	usersReq := []User{}
-	if err := c.Bind(&usersReq); err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"messages": "invalid request body"})
-	}
-	for i, user := range usersReq {
-		if len(users) == 0 {
-			user.Id = 1
-		} else {
-			newId := users[len(users)-1].Id + 1
-			user.Id = newId
-		}
-		users = append(users, user)
-		usersReq[i] = user
-		
-	}
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"messages": "success create multiple user",
-		"users": usersReq,
-	})
-}
-
 // ---------------------------------------------------
 func main() {
   e := echo.New()
@@ -156,7 +141,6 @@ func main() {
   e.POST("/users", CreateUserController)
 	e.PUT("/users/:id", UpdateUserController)
 	e.DELETE("/users/:id", DeleteUserController)
-	e.POST("/users/multiple", CreateUsersController) // tambahan
 
   // start the server, and log if it fails
   e.Logger.Fatal(e.Start(":8000"))

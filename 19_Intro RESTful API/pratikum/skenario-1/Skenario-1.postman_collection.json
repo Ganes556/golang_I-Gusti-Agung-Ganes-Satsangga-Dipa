@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Menampilkan seluruh data",
+			"name": "Menampilkan seluruh data postingan",
 			"event": [
 				{
 					"listen": "test",
@@ -35,7 +35,7 @@
 			"response": []
 		},
 		{
-			"name": "Menampilkan data id=3",
+			"name": "Menampilkan data postingan dengan id=3",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -53,7 +53,7 @@
 			"response": []
 		},
 		{
-			"name": "Menyimpan data",
+			"name": "Menyimpan data postingan",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -62,7 +62,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"foo\",\r\n    \"body\": \"bar\",\r\n    \"userId\": 1\r\n}",
+					"raw": "{\r\n    \"title\": \"Terampil Golang\",\r\n    \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\",\r\n    \"userId\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -82,7 +82,7 @@
 			"response": []
 		},
 		{
-			"name": "Menghapus data",
+			"name": "Menghapus data postingan dengan id=1",
 			"request": {
 				"method": "DELETE",
 				"header": [],
