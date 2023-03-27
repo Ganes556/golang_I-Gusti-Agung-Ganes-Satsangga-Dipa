@@ -1,6 +1,10 @@
-package users
+package utils
 
-func BinarySearchUser(i int, users []User, f func(int) bool) int {
+import (
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/db"
+)
+
+func BinarySearchUser(i int, users []db.User, f func(int) bool) int {
 	start := 0
 	end := len(users) - 1
 	for start <= end {
@@ -16,7 +20,7 @@ func BinarySearchUser(i int, users []User, f func(int) bool) int {
 	return -1
 }
 
-func MergeSortUser(users []User, comp func(left, right User) bool) []User {
+func MergeSortUser(users []db.User, comp func(left, right db.User) bool) []db.User {
 	if len(users) < 2 {
 		return users
 	}
@@ -24,7 +28,7 @@ func MergeSortUser(users []User, comp func(left, right User) bool) []User {
 	left := MergeSortUser(users[:mid], comp)
 	right := MergeSortUser(users[mid:], comp)
 
-	resArr := make([]User, 0, len(left)+len(right))
+	resArr := make([]db.User, 0, len(left)+len(right))
 
 	for len(left) > 0 || len(right) > 0 {
 		if len(left) == 0 {

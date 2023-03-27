@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"test2\",\r\n    \"email\": \"test2@gmail.com\",\r\n    \"password\": \"secret2\"\r\n}",
+					"raw": "{\r\n    \"name\": \"test\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"secret12345678\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -74,7 +74,7 @@
 			"response": []
 		},
 		{
-			"name": "mengedit user by id",
+			"name": "mengupdate user by id",
 			"request": {
 				"method": "PUT",
 				"header": [],
