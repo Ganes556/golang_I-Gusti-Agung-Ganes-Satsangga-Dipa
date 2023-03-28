@@ -1,2 +1,0 @@
-My username: anonim
-With host: LAPTOP-G8QEUK03 Linux LAPTOP-G8QEUK03 5.10.16.3-microsoft-standard-WSL2 #1 SMP Fri Apr 2 22:23:49 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
