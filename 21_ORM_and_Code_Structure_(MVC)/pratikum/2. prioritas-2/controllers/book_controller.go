@@ -52,7 +52,7 @@ func CreateBookController(c echo.Context) error {
     return err
   }
 	
-	if err := conf.DB.Where(&book).First(&book).Error; err == nil {
+	if conf.DB.Where(&book).First(&models.Book{}).RowsAffected > 0{
     return echo.NewHTTPError(http.StatusBadRequest, "book already exist")
   }
 
@@ -64,7 +64,6 @@ func CreateBookController(c echo.Context) error {
 		"message": "success create new book",
 		"book": book,
 	})
-
 }
 
 func DeleteBookController(c echo.Context) error {
@@ -75,8 +74,6 @@ func DeleteBookController(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "id must be number")
 	}
-	
-	var book = models.Book{}
 	
 	if err = conf.DB.First(&models.Book{}, id).Unscoped().Delete(&models.Book{}).Error; err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
@@ -90,7 +87,6 @@ func DeleteBookController(c echo.Context) error {
 	
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success delete book by id " + idStr,
-		"book": book,
 	})
 
 }

@@ -14,14 +14,15 @@ func GetUsersController(c echo.Context) error {
 	
   var users []models.User
 
-	
   if err := conf.DB.Find(&users).Error; err != nil {
     return echo.NewHTTPError(http.StatusBadRequest, err.Error())
   }
+	
   return c.JSON(http.StatusOK, map[string]interface{}{
     "message": "success get all users",
     "users":   users,
   })
+	
 }
 
 // get user by id
@@ -43,6 +44,7 @@ func GetUserController(c echo.Context) error {
 		"messages": "success get user by id " + idStr,
 		"user": user,
 	})
+
 }
 
 // create new user
@@ -53,10 +55,11 @@ func CreateUserController(c echo.Context) error {
   if err := c.Validate(&user); err != nil {
     return err
   }
-
-  if err:= conf.DB.First(&models.User{}, "email = ?", user.Email).Error; err == nil {
+	
+  if conf.DB.First(&models.User{}, "email = ?", user.Email).RowsAffected > 0{
     return echo.NewHTTPError(http.StatusBadRequest, "email already exist")
   }
+
   if err := conf.DB.Save(&user).Error; err != nil {
     return echo.NewHTTPError(http.StatusBadRequest, err.Error())
   }
@@ -93,6 +96,7 @@ func DeleteUserController(c echo.Context) error {
 	return c.JSON(http.StatusOK, &echo.Map{
 		"messages": "success delete user by id " + idStr,
 	})
+
 }
 
 // update user by id
