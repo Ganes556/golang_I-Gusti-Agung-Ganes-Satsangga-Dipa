@@ -14,11 +14,11 @@ func New() *echo.Echo{
 	e.Validator = lib.NewValidator()
 
 	// users
-	e.GET("/users", controller.GetUsers)
-	e.GET("/users/:id", controller.GetUser)
-	e.POST("/users", controller.CreateUser)
-	e.PUT("/users/:id", controller.UpdateUser)
-	e.DELETE("/users/:id", controller.DeleteUser)
+	e.GET("/users", controller.GetUsersController)
+	e.GET("/users/:id", controller.GetUserController)
+	e.POST("/users", controller.CreateUserController)
+	e.PUT("/users/:id", controller.UpdateUserController)
+	e.DELETE("/users/:id", controller.DeleteUserController)
 	
 	return e
 }

@@ -10,14 +10,14 @@ import (
 )
 
 // get all users
-func GetUsers(c echo.Context) error {
+func GetUsersController(c echo.Context) error {
 	
   var users []models.User
 
+	
   if err := conf.DB.Find(&users).Error; err != nil {
     return echo.NewHTTPError(http.StatusBadRequest, err.Error())
   }
-	
   return c.JSON(http.StatusOK, map[string]interface{}{
     "message": "success get all users",
     "users":   users,
@@ -25,7 +25,7 @@ func GetUsers(c echo.Context) error {
 }
 
 // get user by id
-func GetUser(c echo.Context) error {
+func GetUserController(c echo.Context) error {
   // your solution here
   idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
@@ -46,7 +46,7 @@ func GetUser(c echo.Context) error {
 }
 
 // create new user
-func CreateUser(c echo.Context) error {
+func CreateUserController(c echo.Context) error {
   user := models.User{}
   c.Bind(&user)
 
@@ -67,7 +67,7 @@ func CreateUser(c echo.Context) error {
 }
 
 // delete user by id
-func DeleteUser(c echo.Context) error {
+func DeleteUserController(c echo.Context) error {
   // your solution here
   idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
@@ -96,7 +96,7 @@ func DeleteUser(c echo.Context) error {
 }
 
 // update user by id
-func UpdateUser(c echo.Context) error {
+func UpdateUserController(c echo.Context) error {
   // your solution here
   var user models.User
 	c.Bind(&user)
