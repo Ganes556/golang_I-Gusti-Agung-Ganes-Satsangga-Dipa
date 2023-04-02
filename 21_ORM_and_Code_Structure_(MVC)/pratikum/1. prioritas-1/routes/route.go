@@ -2,23 +2,50 @@ package routes
 
 import (
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 
 	controller "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/controllers"
-	lib "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/libraries"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/libs"
 )
 
 func New() *echo.Echo{
 	e := echo.New()
 	
 	// Set up validator
-	e.Validator = lib.NewValidator()
-
+	e.Validator = libs.NewValidator()
+	
+	// Set up middleware
+	e.Pre(middleware.RemoveTrailingSlash())
+	
 	// users
-	e.GET("/users", controller.GetUsersController)
-	e.GET("/users/:id", controller.GetUserController)
-	e.POST("/users", controller.CreateUserController)
-	e.PUT("/users/:id", controller.UpdateUserController)
-	e.DELETE("/users/:id", controller.DeleteUserController)
+	usersGroup := e.Group("/users")
+	{
+		usersGroup.GET("", controller.GetUsers)
+		usersGroup.GET("/:id", controller.GetUser)
+		usersGroup.POST("", controller.CreateUser)
+		usersGroup.PUT("/:id", controller.UpdateUser)
+		usersGroup.DELETE("/:id", controller.DeleteUser)
+	}
+
+	// books
+	booksGroup := e.Group("/books")
+	{
+		booksGroup.GET("", controller.GetBooks)
+		booksGroup.GET("/:id", controller.GetBook)
+		booksGroup.POST("", controller.CreateBook)
+		booksGroup.PUT("/:id", controller.UpdateBook)
+		booksGroup.DELETE("/:id", controller.DeleteBook)
+	}
+
+	// blogs
+	blogsGroup := e.Group("/blogs")
+	{
+		blogsGroup.GET("", controller.GetBlogs)
+		blogsGroup.GET("/:id", controller.GetBlog)
+		blogsGroup.POST("", controller.CreateBlog)
+		blogsGroup.PUT("/:id", controller.UpdateBlog)
+		blogsGroup.DELETE("/:id", controller.DeleteBlog)
+	}
 	
 	return e
 }
