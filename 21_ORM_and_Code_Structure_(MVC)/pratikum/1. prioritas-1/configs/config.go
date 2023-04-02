@@ -11,7 +11,11 @@ import (
 
 var DB *gorm.DB
 
-func InitDB() {
+func init(){
+	initDB()
+}
+
+func initDB() {
 
 	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		cons.DB_USERNAME,

@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"strconv"
+	"strings"
 
 	conf "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/configs"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
@@ -30,6 +31,7 @@ func GetUserController(c echo.Context) error {
   // your solution here
   idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
+
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "id must be number")
 	}
@@ -63,6 +65,7 @@ func CreateUserController(c echo.Context) error {
   if err := conf.DB.Save(&user).Error; err != nil {
     return echo.NewHTTPError(http.StatusBadRequest, err.Error())
   }
+	
   return c.JSON(http.StatusOK, map[string]interface{}{
     "message": "success create new user",
     "user":    user,
@@ -86,7 +89,6 @@ func DeleteUserController(c echo.Context) error {
   
   var count int64 = -1
   conf.DB.Model(&models.User{}).Count(&count)
-  // fmt.Println(count)
   
   if count == 0 {
     // reset auto increment
@@ -112,12 +114,14 @@ func UpdateUserController(c echo.Context) error {
 	}
 	
 	if err := c.Validate(&user); err != nil {
-    return err
+		if !strings.Contains(err.Error(),"required") {
+			return err
+		}
   }
 
 	user.ID = uint(id)
-	
-	if err = conf.DB.First(&models.User{}, id).Updates(&user).Error; err != nil {
+
+	if err = conf.DB.Updates(&user).First(&user,id).Error; err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}
 

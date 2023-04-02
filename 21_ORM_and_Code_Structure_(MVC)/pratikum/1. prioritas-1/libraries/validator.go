@@ -21,6 +21,7 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 		}
 		for _, e := range validationErrors {
 			field := strings.ToLower(e.Field())
+			
 			if e.Tag() == "required" {
 				return echo.NewHTTPError(http.StatusBadRequest, field + " is required")
 			}
