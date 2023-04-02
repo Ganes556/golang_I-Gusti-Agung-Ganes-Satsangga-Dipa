@@ -64,6 +64,30 @@ func GetBlog(c echo.Context) error {
 	})
 }
 
+func GetBlogByUserId(c echo.Context) error {
+	var blogs []struct{
+		Penulis string `json:"penulis"`
+		models.Blog
+	}
+
+	idStr := c.Param("id")
+	var id int
+	err := utils.Id2Int(idStr, &id)
+	
+	if err != nil {
+		return err
+	}
+
+	if err := services.FindBlogByUserId(id,&blogs); err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, &echo.Map{
+		"message": "success get blog by user id " + idStr,
+		"blogs": blogs,
+	})
+}
+
 func UpdateBlog(c echo.Context) error {
 	var blog models.Blog
 
@@ -85,7 +109,6 @@ func UpdateBlog(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, &echo.Map{
 		"message": "success update blog " + idStr,
-		"blog": blog,
 	})
 }
 

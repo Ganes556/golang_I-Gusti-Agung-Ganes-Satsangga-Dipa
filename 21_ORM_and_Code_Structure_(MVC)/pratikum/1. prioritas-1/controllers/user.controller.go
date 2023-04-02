@@ -117,6 +117,5 @@ func UpdateUser(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, &echo.Map{
 		"messages": "success update user by id " + idStr,
-		"user": user,
 	})
 }

@@ -42,6 +42,7 @@ func New() *echo.Echo{
 	{
 		blogsGroup.GET("", controller.GetBlogs)
 		blogsGroup.GET("/:id", controller.GetBlog)
+		blogsGroup.GET("/userId/:id", controller.GetBlogByUserId)
 		blogsGroup.POST("", controller.CreateBlog)
 		blogsGroup.PUT("/:id", controller.UpdateBlog)
 		blogsGroup.DELETE("/:id", controller.DeleteBlog)

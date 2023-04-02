@@ -85,7 +85,6 @@ func DeleteBook(c echo.Context) error {
 
 }
 
-
 func UpdateBook(c echo.Context) error {
 	idStr := c.Param("id")
 	var id int
@@ -112,6 +111,5 @@ func UpdateBook(c echo.Context) error {
 	
 	return c.JSON(http.StatusOK, &echo.Map{
 		"message": "success update book by id " + idStr,
-		"book": book,
 	})
 }

@@ -11,15 +11,26 @@ import (
 
 
 
-func FindAll(data interface{}) error {
+func FindAll(data interface{}) error {	
 	if err := configs.DB.Find(data).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
+	
 	return nil
 }
 
 func FindById(id int, data interface{}) error {
+
 	err := configs.DB.First(&data,id).Error
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
+	return nil
+}
+
+func FindBlogByUserId(id int, data interface{}) error {
+	err := configs.DB.Table("blogs").Select("users.name AS penulis, blogs.*").Joins("LEFT JOIN users ON users.id = blogs.user_refer").Where("users.id = ?", id).Scan(data).Error
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -33,7 +44,7 @@ func Create(data interface{}) error {
 		}
 	}else {
 		if blog, ok := data.(*models.Blog); ok {
-			// join query to check if user exist by blog.UserRefer
+
 			err := configs.DB.First(&models.User{},"id = ?",blog.UserRefer).Error
 			if err != nil {
 				return echo.NewHTTPError(http.StatusBadRequest, "user not found")
@@ -70,12 +81,17 @@ func DeleteById(id int, data interface{}) error {
 }
 
 func UpdateById(id int, data interface{}) error {
-	if _, ok := data.(*models.Blog); ok {
-		err := configs.DB.Joins("INNER JOIN users ON users.id = blogs.user_refer").First(&models.Blog{},id).Error
+	if blog, ok := data.(*models.Blog); ok {
+		err := configs.DB.First(&models.User{},"id = ?",blog.UserRefer).Error
 		if err != nil {
 			return echo.NewHTTPError(http.StatusBadRequest, "user not found")
 		}
 	} else {
+		if user, ok := data.(*models.User); ok {
+			if configs.DB.First(user, "email = ?", user.Email).RowsAffected > 0{
+				return echo.NewHTTPError(http.StatusBadRequest, "email already exist")
+			}
+		}
 		var count int64
 		err := configs.DB.Model(data).Where("id = ?", id).Select("id").Count(&count).Error
 		if err != nil {
