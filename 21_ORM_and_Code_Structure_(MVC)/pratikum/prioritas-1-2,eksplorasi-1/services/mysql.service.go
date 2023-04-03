@@ -82,9 +82,11 @@ func DeleteById(id int, data interface{}) error {
 
 func UpdateById(id int, data interface{}) error {
 	if blog, ok := data.(*models.Blog); ok {
-		err := configs.DB.First(&models.User{},"id = ?",blog.UserRefer).Error
-		if err != nil {
-			return echo.NewHTTPError(http.StatusBadRequest, "user not found")
+		if blog.UserRefer > 0 {
+			err := configs.DB.First(&models.User{},"id = ?",blog.UserRefer).Error
+			if err != nil {
+				return echo.NewHTTPError(http.StatusBadRequest, "user refer not found")
+			}
 		}
 	} else {
 		if user, ok := data.(*models.User); ok {
