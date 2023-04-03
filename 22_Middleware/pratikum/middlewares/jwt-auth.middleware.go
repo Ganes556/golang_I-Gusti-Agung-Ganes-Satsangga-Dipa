@@ -1,7 +1,6 @@
 package middlewares
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -36,7 +35,6 @@ func CreateToken(userId uint, name string) (string, error) {
 func JwtMiddleware() echo.MiddlewareFunc{
 	return echojwt.WithConfig(echojwt.Config{
 		Skipper: func(c echo.Context) bool {
-			fmt.Print(c.Request().URL.Path)
 			return c.Request().URL.Path ==  "/users/login" 
 		},
 		SigningKey: []byte(os.Getenv("JWT_SECRET")),
