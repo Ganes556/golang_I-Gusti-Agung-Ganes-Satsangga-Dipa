@@ -55,3 +55,8 @@
   - [logrus](https://github.com/sirupsen/logrus)
   - go kit
   - [etc](https://github.com/go-kit/kit)
+
+## Reference
+
+- [Awesome Package Golang](https://awesome-go.com/)
+- [Check Third Party Lib](https://osv.dev/)
