@@ -19,6 +19,7 @@ func New() *echo.Echo{
 	e.Use(middlewares.LoggerMiddleware())
 	e.Pre(middleware.RemoveTrailingSlash())
 	e.Use(middlewares.JwtMiddleware())
+	
 	// users
 	usersGroup := e.Group("/users")
 	{
