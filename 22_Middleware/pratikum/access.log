@@ -1,4 +1,0 @@
-2023-04-03T12:12:18+08:00 ::1 | GET 401 /users 1.1085ms | code=401, message=missing or malformed jwt, internal=missing value in request header
-2023-04-03T12:38:30+08:00 ::1 | GET 401 /users 943.9µs | code=401, message=missing or malformed jwt, internal=missing value in request header
-2023-04-03T12:38:36+08:00 ::1 | GET 200 /books 8.1913ms | 
-2023-04-03T12:38:40+08:00 ::1 | GET 400 /books/1 14.9706ms | code=400, message=record not found

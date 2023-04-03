@@ -5,19 +5,47 @@ import (
 	"strconv"
 	"strings"
 
-	models_mysql "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models/mysql"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/middlewares"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/utils"
 	"github.com/labstack/echo/v4"
 )
 
-// func LoginUser(c echo.Context) error {
+func LoginUser(c echo.Context) error {
+	// your solution here
+	var userAuth models.UserAuth
+
+	c.Bind(&userAuth)
 	
-// }
+	if err := c.Validate(&userAuth); err != nil {
+		return err
+	}
+
+	var userDB models.User
+	err := services.FindByEmail(userAuth.Email, &userDB)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid email or password")
+	}
+	
+	if err := utils.ComparePassword(userDB.Password,userAuth.Password); err != nil{
+		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid email or password")
+	}
+	
+	token, err := middlewares.CreateToken(userDB.ID, userDB.Name)
+	if err != nil {
+		return err
+	}
+	
+	return c.JSON(http.StatusOK, &echo.Map{
+		"messages": "success login",
+		"token": token,
+	})	
+}
 
 // get all users
 func GetUsers(c echo.Context) error {
-  var users []models_mysql.User
+  var users []models.User
 	err := services.FindAll(&users)
 	if err != nil {
 		return err
@@ -39,7 +67,7 @@ func GetUser(c echo.Context) error {
 	if err != nil {
 		return err
 	}
-  var user models_mysql.User
+  var user models.User
 	err = services.FindById(id, &user)
 	if err != nil {
 		return err
@@ -54,7 +82,7 @@ func GetUser(c echo.Context) error {
 
 // create new user
 func CreateUser(c echo.Context) error {
-  user := models_mysql.User{}
+  user := models.User{}
 	
   c.Bind(&user)
 
@@ -84,7 +112,7 @@ func DeleteUser(c echo.Context) error {
 		})
 	}
 	
-  err = services.DeleteById(id, &models_mysql.User{})
+  err = services.DeleteById(id, &models.User{})
 	if err != nil {
 		return err
 	}	
@@ -98,7 +126,7 @@ func DeleteUser(c echo.Context) error {
 // update user by id
 func UpdateUser(c echo.Context) error {
   // your solution here
-  var user models_mysql.User
+  var user models.User
 	c.Bind(&user)
 
 	idStr := c.Param("id")

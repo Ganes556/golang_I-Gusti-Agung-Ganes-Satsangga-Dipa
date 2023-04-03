@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	models_mysql "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models/mysql"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/utils"
 	"github.com/labstack/echo/v4"
@@ -11,7 +11,7 @@ import (
 
 func CreateBlog(c echo.Context) error {
 	
-	var blog models_mysql.Blog
+	var blog models.Blog
 	c.Bind(&blog)
 	
 	if err := c.Validate(&blog); err != nil {
@@ -30,7 +30,7 @@ func CreateBlog(c echo.Context) error {
 }
 
 func GetBlogs(c echo.Context) error {
-	var blogs []models_mysql.Blog
+	var blogs []models.Blog
 
 	if err := services.FindAll(&blogs); err != nil {
 		return err
@@ -43,7 +43,7 @@ func GetBlogs(c echo.Context) error {
 }
 
 func GetBlog(c echo.Context) error {
-	var blog models_mysql.Blog
+	var blog models.Blog
 	
 	idStr := c.Param("id")
 	var id int
@@ -67,7 +67,7 @@ func GetBlog(c echo.Context) error {
 func GetBlogByUserId(c echo.Context) error {
 	var blogs []struct{
 		Penulis string `json:"penulis"`
-		models_mysql.Blog
+		models.Blog
 	}
 
 	idStr := c.Param("id")
@@ -89,7 +89,7 @@ func GetBlogByUserId(c echo.Context) error {
 }
 
 func UpdateBlog(c echo.Context) error {
-	var blog models_mysql.Blog
+	var blog models.Blog
 
 	idStr := c.Param("id")
 	var id int
@@ -122,7 +122,7 @@ func DeleteBlog(c echo.Context) error {
 		return err
 	}
 
-	if err := services.DeleteById(id, &models_mysql.Blog{}); err != nil {
+	if err := services.DeleteById(id, &models.Blog{}); err != nil {
 		return err
 	}
 

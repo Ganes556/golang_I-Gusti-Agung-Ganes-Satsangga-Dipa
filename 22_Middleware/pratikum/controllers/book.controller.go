@@ -4,14 +4,14 @@ import (
 	"net/http"
 	"strings"
 
-	models_mysql "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models/mysql"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/utils"
 	"github.com/labstack/echo/v4"
 )
 
 func GetBooks(c echo.Context) error {
-	var books = []models_mysql.Book{}
+	var books = []models.Book{}
 	
 	if err := services.FindAll(&books); err != nil {
 		return err
@@ -33,7 +33,7 @@ func GetBook(c echo.Context) error {
 		return err
 	}
 
-	var book = models_mysql.Book{}
+	var book = models.Book{}
 
 	if err := services.FindById(id,&book); err != nil {
 		return err
@@ -46,7 +46,7 @@ func GetBook(c echo.Context) error {
 }
 
 func CreateBook(c echo.Context) error {
-	var book models_mysql.Book
+	var book models.Book
 	
 	c.Bind(&book)
 
@@ -75,7 +75,7 @@ func DeleteBook(c echo.Context) error {
 		return err
 	}
 	
-	if err := services.DeleteById(id, &models_mysql.Book{}); err != nil {
+	if err := services.DeleteById(id, &models.Book{}); err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}	
 	
@@ -94,7 +94,7 @@ func UpdateBook(c echo.Context) error {
 		return err
 	}
 	
-	var book = models_mysql.Book{}
+	var book = models.Book{}
 	
 	c.Bind(&book)
 	if err := c.Validate(&book); err != nil {

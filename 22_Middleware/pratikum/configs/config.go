@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	models_mysql "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models/mysql"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -39,7 +39,7 @@ func initDB() {
 }
 
 func initialMigration() {
-  DB.AutoMigrate(&models_mysql.User{})
-	DB.AutoMigrate(&models_mysql.Book{})
-	DB.AutoMigrate(&models_mysql.Blog{})
+  DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.Book{})
+	DB.AutoMigrate(&models.Blog{})
 }

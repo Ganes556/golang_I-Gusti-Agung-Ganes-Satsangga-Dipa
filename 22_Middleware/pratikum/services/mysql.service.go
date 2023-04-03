@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/configs"
-	models_mysql "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models/mysql"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
@@ -29,6 +29,14 @@ func FindById(id int, data interface{}) error {
 	return nil
 }
 
+func FindByEmail(email string, user *models.User) error {
+	err := configs.DB.First(user, "email = ?", email).Error
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+	return nil
+}
+
 func FindBlogByUserId(id int, data interface{}) error {
 	err := configs.DB.Table("blogs").Select("users.name AS penulis, blogs.*").Joins("LEFT JOIN users ON users.id = blogs.user_refer").Where("users.id = ?", id).Scan(data).Error
 	if err != nil {
@@ -38,14 +46,14 @@ func FindBlogByUserId(id int, data interface{}) error {
 }
 
 func Create(data interface{}) error {
-	if user, ok := data.(*models_mysql.User); ok {
+	if user, ok := data.(*models.User); ok {
 		if configs.DB.First(user, "email = ?", user.Email).RowsAffected > 0{
 			return echo.NewHTTPError(http.StatusBadRequest, "email already exist")
 		}
 	}else {
-		if blog, ok := data.(*models_mysql.Blog); ok {
+		if blog, ok := data.(*models.Blog); ok {
 
-			err := configs.DB.First(&models_mysql.User{},"id = ?",blog.UserRefer).Error
+			err := configs.DB.First(&models.User{},"id = ?",blog.UserRefer).Error
 			if err != nil {
 				return echo.NewHTTPError(http.StatusBadRequest, "user not found")
 			}
@@ -81,13 +89,13 @@ func DeleteById(id int, data interface{}) error {
 }
 
 func UpdateById(id int, data interface{}) error {
-	if blog, ok := data.(*models_mysql.Blog); ok {
-		err := configs.DB.First(&models_mysql.User{},"id = ?",blog.UserRefer).Error
+	if blog, ok := data.(*models.Blog); ok {
+		err := configs.DB.First(&models.User{},"id = ?",blog.UserRefer).Error
 		if err != nil {
 			return echo.NewHTTPError(http.StatusBadRequest, "user not found")
 		}
 	} else {
-		if user, ok := data.(*models_mysql.User); ok {
+		if user, ok := data.(*models.User); ok {
 			if configs.DB.First(user, "email = ?", user.Email).RowsAffected > 0{
 				return echo.NewHTTPError(http.StatusBadRequest, "email already exist")
 			}

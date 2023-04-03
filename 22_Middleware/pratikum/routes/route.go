@@ -18,12 +18,13 @@ func New() *echo.Echo{
 	// Set up middleware
 	e.Use(middlewares.LoggerMiddleware())
 	e.Pre(middleware.RemoveTrailingSlash())
-	
+	e.Use(middlewares.JwtMiddleware())
 	// users
-	usersGroup := e.Group("/users", middlewares.JwtMiddleware())
+	usersGroup := e.Group("/users")
 	{
 		usersGroup.GET("", controller.GetUsers)
 		usersGroup.GET("/:id", controller.GetUser)
+		usersGroup.POST("/login", controller.LoginUser)
 		usersGroup.POST("", controller.CreateUser)
 		usersGroup.PUT("/:id", controller.UpdateUser)
 		usersGroup.DELETE("/:id", controller.DeleteUser)
