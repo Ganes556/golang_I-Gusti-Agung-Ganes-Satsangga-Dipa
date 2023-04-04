@@ -75,5 +75,5 @@
   }
   ```
 
-- Jalankan unit test dengan perintah `go test <nama_package>/... -cover`. -cover untuk melihat coverage testing
+- Jalankan unit test dengan perintah `go test ./<nama_package>/... -cover`. -cover untuk melihat coverage testing
 - Jika ingin melihat coverage testing secara detail, gunakan perintah `go test <nama_package>/... -coverprofile=coverage.out && go tool cover -html=coverage.out`
