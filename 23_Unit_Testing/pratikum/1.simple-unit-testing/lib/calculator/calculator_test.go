@@ -81,7 +81,7 @@ func TestDivision(t *testing.T) {
 	if result != 0 {
 		t.Errorf("Division(0, 2) = %v; want 0", result)
 	}
-	result = Division(2,0)
+	result = Division(2, 0)
 	if result != 0 {
 		t.Error("Division(2,0) must be error cause division by zero")
 	}
