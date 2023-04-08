@@ -14,7 +14,7 @@ func GetUsers(c echo.Context) error {
 	
   var users []models.User
 
-  conf.DB.Find(&users)
+  conf.DB.Model(&models.User{}).Find(&users)
 	
   return c.JSON(http.StatusOK, echo.Map{
     "message": "success get all users",

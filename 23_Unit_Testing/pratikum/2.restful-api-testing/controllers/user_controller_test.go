@@ -18,6 +18,7 @@ func init(){
 	configs.InitDB()
 }
 
+// func TestMain(m *testing.M)
 
 
 func InsertDataUserForGetUser(user models.User) error{
