@@ -1,20 +1,22 @@
 package lib
 
-func Addition(a int, b int) float64 {
-	return float64(a + b)
+import "errors"
+
+func Addition(a, b float64) float64 {
+	return a + b
 }
 
-func Subtraction(a int, b int) float64 {
-	return float64(a - b)
+func Subtraction(a, b float64) float64 {
+	return a - b
 }
 
-func Multiplication(a int, b int) float64 {
-	return float64(a * b)
+func Multiplication(a, b float64) float64 {
+	return a * b
 }
 
-func Division(a int, b int) float64 {
+func Division(a, b float64) (float64, error) {
 	if b == 0 {
-		return float64(0)
+		return 0, errors.New("Division by zero")
 	}
-	return float64(a / b)
+	return a / b, nil
 }

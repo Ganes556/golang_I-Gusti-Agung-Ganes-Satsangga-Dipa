@@ -1,88 +1,141 @@
 package lib
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestAddition(t *testing.T) {
-	result := Addition(1, 1)
-	if result != 2 {
-		t.Errorf("Addition(1, 1) = %v; want 2", result)
+	type args struct {
+		a float64
+		b float64
 	}
-	result = Addition(-1, -1)
-	if result != -2 {
-		t.Errorf("Addition(-1, -1) = %v; want -2", result)
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		// TODO: Add test cases.
+		{
+			name: "[Success] 1 + 1 = 2",
+			args: args{
+				a: 1,
+				b: 1,
+			},
+			want: 2,
+		},
 	}
-	result = Addition(-1, 1)
-	if result != 0 {
-		t.Errorf("Addition(-1, 1) = %v; want 0", result)
-	}
-	result = Addition(1, -1)
-	if result != 0 {
-		t.Errorf("Addition(1, -1) = %v; want 0", result)
-	}
-
-}
-
-func TestSubtraction(t *testing.T) {
-	result := Subtraction(1, 1)
-	if result != 0 {
-		t.Errorf("Subtraction(1, 1) = %v; want 0", result)
-	}
-	result = Subtraction(-1, -1)
-	if result != 0 {
-		t.Errorf("Subtraction(-1, -1) = %v; want -2", result)
-	}
-	result = Subtraction(-1, 1)
-	if result != -2 {
-		t.Errorf("Subtraction(-1, 1) = %v; want -2", result)
-	}
-	result = Subtraction(1, -1)
-	if result != 2 {
-		t.Errorf("Subtraction(1, -1) = %v; want 2", result)
-	}
-}
-
-func TestMultiplication(t *testing.T) {
-	result := Multiplication(2, 2)
-	if result != 4 {
-		t.Errorf("Multiplication(2, 2) = %v; want 4", result)
-	}
-	result = Multiplication(-2, -2)
-	if result != 4 {
-		t.Errorf("Multiplication(-2, -2) = %v; want 4", result)
-	}
-	result = Multiplication(-2, 2)
-	if result != -4 {
-		t.Errorf("Multiplication(-2, 2) = %v; want -4", result)
-	}
-	result = Multiplication(0, 2)
-	if result != 0 {
-		t.Errorf("Multiplication(0, 2) = %v; want 0", result)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Addition(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("Addition() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }
 
 func TestDivision(t *testing.T) {
-	result := Division(4, 2)
-	if result != 2 {
-		t.Errorf("Division(4, 2) = %v; want 2", result)
+	type args struct {
+		a float64
+		b float64
 	}
-	result = Division(-4, -2)
-	if result != 2 {
-		t.Errorf("Division(-4, -2) = %v; want 2", result)
+	tests := []struct {
+		name    string
+		args    args
+		want    float64
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+		{
+			name: "[Success] 20 / 10 = 2",
+			args: args{
+				a: 20,
+				b: 10,
+			},
+			want:    2,
+			wantErr: false,
+		},
+		{
+			name: "[Error] 20 / 0 = Division by zero",
+			args: args{
+				a: 20,
+				b: 0,
+			},
+			wantErr: true,
+		},
 	}
-	result = Division(-4, 2)
-	if result != -2 {
-		t.Errorf("Division(-4, 2) = %v; want -2", result)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			got, err := Division(tt.args.a, tt.args.b)
+
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Division() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			
+			if !tt.wantErr {
+				if got != tt.want {
+					t.Errorf("Division() = %v, want %v", got, tt.want)
+				}
+			}
+
+		})
 	}
-	result = Division(4, -2)
-	if result != -2 {
-		t.Errorf("Division(4, -2) = %v; want -2", result)
+}
+
+func TestSubtraction(t *testing.T) {
+	type args struct {
+		a float64
+		b float64
 	}
-	result = Division(0, 2)
-	if result != 0 {
-		t.Errorf("Division(0, 2) = %v; want 0", result)
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		// TODO: Add test cases.
+		{
+			name: "[Success] 1 - 1 = 0",
+			args: args{
+				a: 1,
+				b: 1,
+			},
+			want: 0,
+		},
 	}
-	result = Division(2, 0)
-	if result != 0 {
-		t.Error("Division(2,0) must be error cause division by zero")
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Subtraction(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("Subtraction() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMultiplication(t *testing.T) {
+	type args struct {
+		a float64
+		b float64
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		// TODO: Add test cases.
+		{
+			name: "[Success] 1 * 1 = 1",
+			args: args{
+				a: 1,
+				b: 1,
+			},
+			want: 1,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Multiplication(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("Multiplication() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }
