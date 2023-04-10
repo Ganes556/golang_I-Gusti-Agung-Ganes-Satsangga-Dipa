@@ -63,3 +63,52 @@
 2023-04-09T23:01:24+08:00 ::1 | POST 409 /users 1.4666ms | code=409, message=email already exist
 2023-04-09T23:01:28+08:00 ::1 | POST 201 /users 62.4859ms | 
 2023-04-09T23:01:45+08:00 ::1 | GET 200 /users 1.5738ms | 
+2023-04-10T11:40:10+08:00 ::1 | GET 200 /users 9.1094ms | 
+2023-04-10T11:45:47+08:00 ::1 | GET 200 /users 681.7µs | 
+2023-04-10T11:45:49+08:00 ::1 | GET 200 /users 846.5µs | 
+2023-04-10T11:55:24+08:00 ::1 | GET 200 /users 1.0532ms | 
+2023-04-10T14:11:32+08:00 ::1 | POST 201 /users 155.4558ms | 
+2023-04-10T14:11:43+08:00 ::1 | POST 405 /users/login 0s | code=405, message=Method Not Allowed
+2023-04-10T14:21:52+08:00 ::1 | POST 200 /users/login 31.7924ms | 
+2023-04-10T14:22:16+08:00 ::1 | POST 401 /users/login 1.5336ms | code=401, message=user not found
+2023-04-10T14:22:59+08:00 ::1 | POST 401 /users/login 1.4591ms | code=401, message=user not found
+2023-04-10T14:23:13+08:00 ::1 | POST 401 /users/login 6.3339ms | code=401, message=user not found
+2023-04-10T14:24:09+08:00 ::1 | POST 401 /users/login 4.8702ms | code=401, message=user not found
+2023-04-10T14:24:18+08:00 ::1 | POST 400 /users/login 968µs | code=400, message=email is required
+2023-04-10T14:24:24+08:00 ::1 | POST 400 /users/login 0s | code=400, message=email is required
+2023-04-10T14:24:25+08:00 ::1 | POST 400 /users/login 1.0085ms | code=400, message=email is required
+2023-04-10T14:24:28+08:00 ::1 | POST 400 /users/login 0s | code=400, message=password is required
+2023-04-10T14:25:04+08:00 ::1 | POST 401 /users/login 2.858ms | code=401, message=user not found
+2023-04-10T14:26:10+08:00 ::1 | POST 200 /users/login 37.1084ms | 
+2023-04-10T14:27:24+08:00 ::1 | POST 400 /users/login 574.6µs | code=400, message=email is not valid
+2023-04-10T14:29:24+08:00 ::1 | POST 400 /users/login 530.2µs | code=400, message=email is not valid
+2023-04-10T14:29:30+08:00 ::1 | POST 200 /users/login 66.3967ms | 
+2023-04-10T14:42:36+08:00 ::1 | POST 200 /users/login 0s | 
+2023-04-10T15:08:11+08:00 ::1 | POST 200 /users/login 95.2186ms | 
+2023-04-10T18:15:12+08:00 ::1 | GET 200 /books 1.5221ms | 
+2023-04-10T18:15:16+08:00 ::1 | POST 201 /books 13.4359ms | 
+2023-04-10T18:15:20+08:00 ::1 | GET 200 /books/1 1.5485ms | 
+2023-04-10T18:21:50+08:00 ::1 | POST 409 /books 30.1387ms | code=409, message=book already exist
+2023-04-10T18:21:53+08:00 ::1 | POST 409 /books 1.2724ms | code=409, message=book already exist
+2023-04-10T18:35:22+08:00 ::1 | POST 400 /books 0s | code=400, message=judul is required
+2023-04-10T18:35:28+08:00 ::1 | POST 400 /books 0s | code=400, message=penerbit is required
+2023-04-10T19:06:12+08:00 ::1 | POST 409 /books 33.9626ms | code=409, message=book already exist
+2023-04-10T19:06:37+08:00 ::1 | POST 201 /books 10.7415ms | 
+2023-04-10T19:07:46+08:00 ::1 | POST 201 /books 38.7505ms | 
+2023-04-10T19:08:27+08:00 ::1 | POST 409 /books 38.9697ms | code=409, message=book already exist
+2023-04-10T23:08:23+08:00 ::1 | POST 404 /blogs 0s | code=404, message=Not Found
+2023-04-10T23:09:16+08:00 ::1 | POST 200 /blogs 34.0243ms | 
+2023-04-10T23:09:18+08:00 ::1 | POST 409 /blogs 3.1938ms | code=409, message=blog already exist
+2023-04-10T23:09:26+08:00 ::1 | POST 409 /blogs 2.5085ms | code=409, message=blog already exist
+2023-04-10T23:11:58+08:00 ::1 | GET 200 /blogs 1.4203ms | 
+2023-04-10T23:12:03+08:00 ::1 | GET 200 /blogs/1 1.8215ms | 
+2023-04-10T23:13:55+08:00 ::1 | PUT 400 /blogs/asdf 0s | code=400, message=id must be number
+2023-04-10T23:14:00+08:00 ::1 | PUT 404 /blogs/9999 4.9772ms | code=404, message=blog not found
+2023-04-10T23:15:57+08:00 ::1 | GET 200 /blogs 3.2033ms | 
+2023-04-10T23:16:01+08:00 ::1 | DELETE 200 /blogs/1 11.5246ms | 
+2023-04-10T23:16:07+08:00 ::1 | POST 200 /blogs 12.9003ms | 
+2023-04-10T23:16:10+08:00 ::1 | GET 200 /blogs 1.8214ms | 
+2023-04-10T23:21:02+08:00 ::1 | PUT 200 /blogs/2 26.339ms | 
+2023-04-10T23:21:57+08:00 ::1 | GET 200 /blogs 532.7µs | 
+2023-04-11T00:53:37+08:00 ::1 | GET 200 /blogs/userId/1 40.8691ms | 
+2023-04-11T01:08:35+08:00 ::1 | GET 200 /blogs/userId/1 1.5051ms | 

@@ -12,21 +12,18 @@ import (
 type IUserService interface {
 	FindAll() ([]models.UserRes, error)
 	FindById(idStr string) (models.UserRes, error)
-	FindByEmail(email string) (models.User, error)
+	FindByEmail(email string) (models.UserResDB, error)
 	Create(user models.User) error
 	Update(idStr string, user models.UserReqUpdate) error
 	Delete(idStr string) error
 }
 
-type UserRepo struct {
-	Func IUserService
-}
+type UserRepo struct {}
 
 var userRepo IUserService
 
 func init() {
-	ur := &UserRepo{}
-	userRepo = ur
+	userRepo = &UserRepo{}
 }
 
 func GetUserRepo() IUserService {
@@ -61,11 +58,11 @@ func (ur *UserRepo) FindById(idStr string) (models.UserRes, error){
 	return user, nil
 }
 
-func (ur *UserRepo) FindByEmail(email string) (models.User, error){
-	var user models.User
-	err := configs.DB.Select("name","email","password").Model(&models.User{}).Where("email = ?", email).First(&user).Error
+func (ur *UserRepo) FindByEmail(email string) (models.UserResDB, error){
+	var user models.UserResDB
+	err := configs.DB.Model(&models.User{}).Where("email = ?", email).First(&user).Error
 	if err != nil {
-		return models.User{}, echo.NewHTTPError(http.StatusNotFound, "user not found")
+		return models.UserResDB{}, echo.NewHTTPError(http.StatusNotFound, "user not found")
 	}
 	return user, nil
 }
@@ -113,7 +110,7 @@ func (ur *UserRepo) Delete(idStr string) error{
 		return echo.NewHTTPError(http.StatusBadRequest, "id must be number")	
 	}
 
-	err = configs.DB.Model(&models.User{}).Where("id = ?", id).First(&models.UserReq{}).Error
+	err = configs.DB.Model(&models.User{}).Where("id = ?", id).First(&models.User{}).Error
 
 	if err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "user not found")

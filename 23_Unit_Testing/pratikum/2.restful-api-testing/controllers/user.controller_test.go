@@ -8,11 +8,91 @@ import (
 	"testing"
 
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/libs"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/middlewares"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/utils"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestLoginUsers(t *testing.T) {
+	jwtMid := middlewares.JWTMiddleware{}
+
+	token, _ := jwtMid.CreateToken(1, "test")
+
+	mockJwtMiddleware := middlewares.MockJWTMiddleware{}
+	middlewares.SetJWTMiddleware(&mockJwtMiddleware)
+
+	mockUserRepo := services.MockUserRepo{}
+	services.SetUserRepo(&mockUserRepo)
+
+	tests := []struct {
+		name         string
+		payload      models.UserReqAuth
+		expectedBody echo.Map
+		expectedCode int
+		wantErr      bool
+	}{
+		{
+			name: "Success",
+			payload: models.UserReqAuth{
+				Email:    "test@gmail.com",
+				Password: "testing9999999",
+			},
+			expectedBody: echo.Map{
+				"message": "success login",
+				"token":   token,
+			},
+			expectedCode: http.StatusOK,
+			wantErr:      false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			e := echo.New()
+			e.Validator = libs.NewValidator()
+
+			payload, err := json.Marshal(tt.payload)
+			assert.NoError(t, err)
+			req := httptest.NewRequest(http.MethodPost, "/users/login", bytes.NewReader(payload))
+			req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+			rec := httptest.NewRecorder()
+			c := e.NewContext(req, rec)
+
+			hash, err := utils.HashPassword(tt.payload.Password)
+			assert.NoError(t, err)
+
+			if !tt.wantErr {
+				resData := models.UserResDB{
+					ID:       1,
+					Name:     "test",
+					Email:    "test@gmail.com",
+					Password: hash,
+				}
+				mockUserRepo.On("FindByEmail", tt.payload.Email).Return(resData, nil).Once()
+				mockJwtMiddleware.On("CreateToken", uint(1), "test").Return(tt.expectedBody["token"], nil).Once()
+			}
+
+			err = LoginUser(c)
+			assert.NoError(t, err)
+			var ret struct {
+				Message string `json:"message"`
+				Token   string `json:"token"`
+			}
+
+			err = json.Unmarshal(rec.Body.Bytes(), &ret)
+			assert.NoError(t, err)
+
+			assert.Equal(t, tt.expectedCode, rec.Code)
+			assert.Equal(t, tt.expectedBody["message"], ret.Message)
+			assert.Equal(t, tt.expectedBody["token"], ret.Token)
+
+		})
+	}
+}
+
 
 func TestGetUsers(t *testing.T) {
 	mockUserRepo := services.MockUserRepo{}
@@ -49,9 +129,9 @@ func TestGetUsers(t *testing.T) {
 			c := e.NewContext(req, rec)
 
 			if !tt.wantErr {
-				mockUserRepo.On("FindAll").Return(tt.expectedBody["users"], nil)
+				mockUserRepo.On("FindAll").Return(tt.expectedBody["users"], nil).Once()
 			}else {
-				mockUserRepo.On("FindAll").Return(tt.expectedCode, echo.NewHTTPError(http.StatusInternalServerError, tt.expectedBody["message"]))
+				mockUserRepo.On("FindAll").Return(tt.expectedCode, echo.NewHTTPError(http.StatusInternalServerError, tt.expectedBody["message"])).Once()
 
 			}
 
@@ -137,9 +217,9 @@ func TestGetUser(t *testing.T) {
 			c.SetParamValues(tt.userId)
 			
 			if !tt.wantErr {
-				mockUserRepo.On("FindById", tt.userId).Return(tt.expectedBody["user"], nil)
+				mockUserRepo.On("FindById", tt.userId).Return(tt.expectedBody["user"], nil).Once()
 			} else {
-				mockUserRepo.On("FindById", tt.userId).Return(models.UserRes{}, echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string)))
+				mockUserRepo.On("FindById", tt.userId).Return(models.UserRes{}, echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string))).Once()
 			}
 
 			err := GetUser(c)
@@ -219,6 +299,42 @@ func TestCreateUser(t *testing.T) {
 			wantErr: true,
 		},
 		{
+			name: "Failed - Required Name",
+			payload: models.User{
+				Email: "test2@gmail.com",
+				Password: "test2123456",
+			},
+			expectedBody: echo.Map{
+				"message": "name is required",
+			},
+			expectedCode: http.StatusBadRequest,
+			wantErr: true,
+		},
+		{
+			name: "Failed - Required Email",
+			payload: models.User{
+				Name: "test2",
+				Password: "test2123456",
+			},
+			expectedBody: echo.Map{
+				"message": "email is required",
+			},
+			expectedCode: http.StatusBadRequest,
+			wantErr: true,
+		},
+		{
+			name: "Failed - Required Password",
+			payload: models.User{
+				Name: "test2",
+				Email: "test2@gmail.com",
+			},
+			expectedBody: echo.Map{
+				"message": "password is required",
+			},
+			expectedCode: http.StatusBadRequest,
+			wantErr: true,
+		},
+		{
 			name: "Failed - Email Conflict",
 			payload: models.User{
 				Name: "test",
@@ -247,9 +363,9 @@ func TestCreateUser(t *testing.T) {
 			c := e.NewContext(req, rec)
 			
 			if !tt.wantErr {
-				mockUserRepo.On("Create", tt.payload).Return(nil)
+				mockUserRepo.On("Create", tt.payload).Return(nil).Once()
 			}else {
-				mockUserRepo.On("Create", tt.payload).Return(echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string)))
+				mockUserRepo.On("Create", tt.payload).Return(echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string))).Once()
 			}
 
 			err = CreateUser(c)
@@ -359,9 +475,9 @@ func TestUpdateUser(t *testing.T) {
 			c.SetParamValues(tt.userId)
 			
 			if !tt.wantErr {
-				mockUserRepo.On("Update",tt.userId ,tt.payload).Return(nil)
+				mockUserRepo.On("Update",tt.userId ,tt.payload).Return(nil).Once()
 			}else {
-				mockUserRepo.On("Update",tt.userId , tt.payload).Return(echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string)))
+				mockUserRepo.On("Update",tt.userId , tt.payload).Return(echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string))).Once()
 			}
 
 			err = UpdateUser(c)
@@ -439,9 +555,9 @@ func TestDeleteUser(t *testing.T) {
 			c.SetParamValues(tt.userId)
 			
 			if !tt.wantErr {
-				mockUserRepo.On("Delete", tt.userId).Return(nil)
+				mockUserRepo.On("Delete", tt.userId).Return(nil).Once()
 			} else {
-				mockUserRepo.On("Delete", tt.userId).Return(echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string)))
+				mockUserRepo.On("Delete", tt.userId).Return(echo.NewHTTPError(tt.expectedCode, tt.expectedBody["message"].(string))).Once()
 			}
 
 			err := DeleteUser(c)

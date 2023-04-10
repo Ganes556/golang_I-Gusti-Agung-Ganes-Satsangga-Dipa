@@ -12,24 +12,26 @@ import (
 
 func LoginUser(c echo.Context) error {
 	// your solution here
-	var UserReqAuth models.UserReqAuth
+	var userReq models.UserReqAuth
 
-	c.Bind(&UserReqAuth)
+	c.Bind(&userReq)
 
-	if err := c.Validate(&UserReqAuth); err != nil {
+	if err := c.Validate(echo.Map{"method":c.Request().Method,"data":&userReq}); err != nil {
 		return err
 	}
-
-	userDB, err := services.GetUserRepo().FindByEmail(UserReqAuth.Email)
+	
+	userDB, err := services.GetUserRepo().FindByEmail(userReq.Email)
+	
 	if err != nil {
-		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid email or password")
+		return echo.NewHTTPError(http.StatusUnauthorized, "user not found")
 	}
 
-	if err := utils.ComparePassword(userDB.Password,UserReqAuth.Password); err != nil{
-		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid email or password")
+	if err := utils.ComparePassword(userDB.Password,userReq.Password); err != nil{
+		return echo.NewHTTPError(http.StatusUnauthorized, "invalid email or password")
 	}
 
-	token, err := middlewares.CreateToken(userDB.ID, userDB.Name)
+	token, err := middlewares.GetJWTMiddleware().CreateToken(userDB.ID, userDB.Name)
+
 	if err != nil {
 		return err
 	}
@@ -58,7 +60,6 @@ func GetUsers(c echo.Context) error {
 func GetUser(c echo.Context) error {
   // your solution here
   idstr := c.Param("id")
-
 	user, err := services.GetUserRepo().FindById(idstr)
 
 	if err != nil {
@@ -92,8 +93,6 @@ func CreateUser(c echo.Context) error {
     "message": "success create new user",
   })
 }
-
-
 
 // update user by id
 func UpdateUser(c echo.Context) error {

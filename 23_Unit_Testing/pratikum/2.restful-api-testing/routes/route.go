@@ -32,25 +32,25 @@ func New() *echo.Echo{
 	}
 
 	// books
-	// booksGroup := e.Group("/books")
-	// {
-	// 	booksGroup.GET("", controller.GetBooks)
-	// 	booksGroup.GET("/:id", controller.GetBook)
-	// 	booksGroup.POST("", controller.CreateBook)
-	// 	booksGroup.PUT("/:id", controller.UpdateBook)
-	// 	booksGroup.DELETE("/:id", controller.DeleteBook)
-	// }
+	booksGroup := e.Group("/books")
+	{
+		booksGroup.GET("", controller.GetBooks)
+		booksGroup.GET("/:id", controller.GetBook)
+		booksGroup.POST("", controller.CreateBook)
+		booksGroup.PUT("/:id", controller.UpdateBook)
+		booksGroup.DELETE("/:id", controller.DeleteBook)
+	}
 
 	// blogs
-	// blogsGroup := e.Group("/blogs")
-	// {
-	// 	blogsGroup.GET("", controller.GetBlogs)
-	// 	blogsGroup.GET("/:id", controller.GetBlog)
-	// 	blogsGroup.GET("/userId/:id", controller.GetBlogByUserId)
-	// 	blogsGroup.POST("", controller.CreateBlog)
-	// 	blogsGroup.PUT("/:id", controller.UpdateBlog)
-	// 	blogsGroup.DELETE("/:id", controller.DeleteBlog)
-	// }
+	blogsGroup := e.Group("/blogs")
+	{
+		blogsGroup.GET("", controller.GetBlogs)
+		blogsGroup.GET("/:id", controller.GetBlog)
+		blogsGroup.GET("/userId/:id", controller.GetBlogByUserId)
+		blogsGroup.POST("", controller.CreateBlog)
+		blogsGroup.PUT("/:id", controller.UpdateBlog)
+		blogsGroup.DELETE("/:id", controller.DeleteBlog)
+	}
 	
 	return e
 }

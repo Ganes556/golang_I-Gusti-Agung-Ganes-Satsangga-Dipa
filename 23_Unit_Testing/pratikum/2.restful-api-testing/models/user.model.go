@@ -19,27 +19,37 @@ type UserRes struct {
 	Email string `json:"email"`
 }
 
-type UserReq struct {
-	Name string `json:"name" form:"name" validate:"required"`
-	Email string `json:"email" form:"email" validate:"required,email"`
-	Password string `json:"password" form:"password" validate:"required,min=8"`
-}
-
 type UserReqUpdate struct {
 	Name string `json:"name" form:"name" validate:"required"`
 	Email string `json:"email" form:"email" validate:"required,email"`
 }
 
-
 type UserReqAuth struct {
-	Email string `json:"email" form:"email"  validate:"required"`
-	Password string `json:"password" form:"password" validate:"required"`
+	Email string `json:"email" form:"email" validate:"required,email"`
+	Password string `json:"password" form:"password" validate:"required,min=8"`
+}
+
+type UserResDB struct {
+	ID uint `json:"id"`
+	Name string `json:"name"`
+	Email string `json:"email"`
+	Password string `json:"password"`
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) error {
-	return utils.HashPassword(u.Password, &u.Password)
+	hash, err := utils.HashPassword(u.Password)
+	if err != nil {
+		return err
+	}
+	u.Password = hash
+	return nil
 }
 
 func (u *User) BeforeUpdate(tx *gorm.DB) error {
-	return utils.HashPassword(u.Password, &u.Password)
+	hash, err := utils.HashPassword(u.Password)
+	if err != nil {
+		return err
+	}
+	u.Password = hash
+	return nil
 }

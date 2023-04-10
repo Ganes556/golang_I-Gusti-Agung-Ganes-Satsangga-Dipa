@@ -1,115 +1,94 @@
 package controllers
 
-// import (
-// 	"net/http"
-// 	"strings"
+import (
+	"net/http"
 
-// 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
-// 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
-// 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/utils"
-// 	"github.com/labstack/echo/v4"
-// )
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
+	"github.com/labstack/echo/v4"
+)
 
-// func GetBooks(c echo.Context) error {
-// 	// var books = []models.Book{}
-// 	// books, err := services.GetMysqlRepo().FindAll([]models.Book{})
-// 	// if err != nil {
-// 	// 	return err
-// 	// }
+func GetBooks(c echo.Context) error {
+	books, err := services.GetBookRepo().FindAll()
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, &echo.Map{
+		"message": "success to get all books",
+		"books": books,
+	})
+}
+
+func GetBook(c echo.Context) error {
+	idStr := c.Param("id")
+
+	book, err := services.GetBookRepo().FindById(idStr)
+
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, &echo.Map{
+		"message": "success get book by id " + idStr,
+		"book":    book,
+	})
+}
+
+func CreateBook(c echo.Context) error {
+	var book models.Book
+
+	c.Bind(&book)
+
+  if err := c.Validate(echo.Map{"method":c.Request().Method,"data":&book}); err != nil {
+    return err
+  }
 	
-// 	return c.JSON(http.StatusOK, &echo.Map{
-// 		"message" : "success to get all books",
-// 		"books" : "books",
-// 	})
-// }
+	err := services.GetBookRepo().Create(book)
 
-// func GetBook(c echo.Context) error {
-// 	idStr := c.Param("id")
-	
-// 	var id int
-// 	err := utils.Id2Int(idStr, &id)
+	if err != nil {
+		return err
+	}
 
-// 	if err != nil {
-// 		return err
-// 	}
+	return c.JSON(http.StatusCreated, &echo.Map{
+		"message": "success create new book",
+	})
+}
 
-// 	var book = models.Book{}
+func DeleteBook(c echo.Context) error {
 
-// 	if err := services.FindById(id,&book); err != nil {
-// 		return err
-// 	}
-	
-// 	return c.JSON(http.StatusOK, &echo.Map{
-// 		"message": "success get book by id " + idStr,
-// 		"book": book,
-// 	})
-// }
+	idStr := c.Param("id")
 
-// func CreateBook(c echo.Context) error {
-// 	var book models.Book
-	
-// 	c.Bind(&book)
+	err := services.GetBookRepo().Delete(idStr)
 
-//   if err := c.Validate(&book); err != nil {
-//     return err
-//   }
-	
-// 	if err := services.Create(&book); err != nil {
-// 		return err
-// 	}
+	if err != nil {
+		return err
+	}
 
-// 	return c.JSON(http.StatusOK, &echo.Map{
-// 		"message": "success create new book",
-// 		"book": book,
-// 	})
-// }
+	return c.JSON(http.StatusOK, &echo.Map{
+		"message": "success delete book by id " + idStr,
+	})
 
-// func DeleteBook(c echo.Context) error {
+}
 
-// 	idStr := c.Param("id")
-	
-// 	var id int
-// 	err := utils.Id2Int(idStr, &id)
+func UpdateBook(c echo.Context) error {
+	idStr := c.Param("id")
 
-// 	if err != nil {
-// 		return err
-// 	}
-	
-// 	if err := services.DeleteById(id, &models.Book{}); err != nil {
-// 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
-// 	}	
-	
-// 	return c.JSON(http.StatusOK, &echo.Map{
-// 		"message": "success delete book by id " + idStr,
-// 	})
+	var book = models.BookReqUpdate{}
 
-// }
+	c.Bind(&book)
 
-// func UpdateBook(c echo.Context) error {
-// 	idStr := c.Param("id")
-// 	var id int
-// 	err := utils.Id2Int(idStr, &id)
+	if err := c.Validate(echo.Map{"method":c.Request().Method,"data":&book}); err != nil {
+		return err
+  }
 
-// 	if err != nil {
-// 		return err
-// 	}
-	
-// 	var book = models.Book{}
-	
-// 	c.Bind(&book)
-// 	if err := c.Validate(&book); err != nil {
-// 		if !strings.Contains(err.Error(),"required") {
-// 			return err
-// 		}
-//   }
-	
-// 	book.ID = uint(id)
+	err := services.GetBookRepo().Update(idStr, book)
 
-// 	if err := services.UpdateById(id, &book); err != nil {
-// 		return err
-// 	}
-	
-// 	return c.JSON(http.StatusOK, &echo.Map{
-// 		"message": "success update book by id " + idStr,
-// 	})
-// }
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, &echo.Map{
+		"message": "success update book by id " + idStr,
+	})
+}

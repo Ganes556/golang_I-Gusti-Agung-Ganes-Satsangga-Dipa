@@ -19,9 +19,9 @@ func (m *MockUserRepo) FindById(idStr string) (models.UserRes, error){
 	return args.Get(0).(models.UserRes), args.Error(1)
 }
 
-func (m *MockUserRepo) FindByEmail(email string) (models.User, error){
+func (m *MockUserRepo) FindByEmail(email string) (models.UserResDB, error){
 	args := m.Called(email)
-	return args.Get(0).(models.User), args.Error(1)
+	return args.Get(0).(models.UserResDB), args.Error(1)
 }
 
 func (m *MockUserRepo) Create(user models.User) error{
