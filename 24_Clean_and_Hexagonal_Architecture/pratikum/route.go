@@ -2,6 +2,7 @@ package main
 
 import (
 	"belajar-go-echo/controller"
+	"belajar-go-echo/pkg"
 	"belajar-go-echo/repository"
 	"belajar-go-echo/usecase"
 
@@ -13,11 +14,17 @@ import (
 
 func NewRoute(e *echo.Echo, db *gorm.DB) {
 	userRepository := repository.NewUserRepository(db)
-	userService := usecase.NewUserUsecase(userRepository)
+	pkgPassword := pkg.NewPassword()
+
+	userService := usecase.NewUserUsecase(userRepository, pkgPassword)	
+
 	userController := controller.NewUserController(userService)
 
-	e.Use(middleware.JwtMiddleware())
+	jwtMid := middleware.NewJWTService()
+	
+	e.Use(jwtMid.JwtMiddleware())
+
 	e.GET("/users", userController.GetAllUsers)
 	e.POST("/users", userController.CreateUser)
-	e.POST("/users/login", userController.GetAllUsers)
+	e.POST("/users/login", userController.LoginUser)
 }

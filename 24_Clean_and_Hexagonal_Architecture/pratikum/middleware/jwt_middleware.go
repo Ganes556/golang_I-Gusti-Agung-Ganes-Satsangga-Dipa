@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"belajar-go-echo/model"
+	"log"
 	"os"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -8,33 +10,29 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type jwtCustomeClaims struct {
-	ID    uint   `json:"id"`
-	Email string `json:"email"`
-	jwt.RegisteredClaims
+
+type JWT interface {
+	JwtMiddleware() echo.MiddlewareFunc
 }
 
-func CreateToken(id uint, email string) (string, error) {
-	claims := &jwtCustomeClaims{
-		ID: id,
-		Email: email,
-	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	t, err := token.SignedString([]byte(os.Getenv("JWT_KEY")))
-	if err != nil {
-		return "", err
-	}
-	return t, nil
+type jwtService struct{}
+
+func NewJWTService() JWT {
+	return &jwtService{}
 }
 
-func JwtMiddleware() echo.MiddlewareFunc{
+func (jwtS *jwtService) JwtMiddleware() echo.MiddlewareFunc{
 	return echojwt.WithConfig(echojwt.Config{
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
-			return &jwtCustomeClaims{}
+			return new(model.JwtClaims)
 		},
 		Skipper: func(c echo.Context) bool {
 			return c.Request().URL.Path == "/users/login"
 		},
 		SigningKey: []byte(os.Getenv("JWT_KEY")),
+		ParseTokenFunc: func(c echo.Context, auth string) (interface{}, error) {
+			log.Print(auth)
+			return auth, nil
+		},
 	})
 }

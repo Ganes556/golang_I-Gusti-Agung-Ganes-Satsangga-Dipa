@@ -3,15 +3,16 @@ package repository
 import (
 	"belajar-go-echo/model"
 	"context"
+	"errors"
 	"time"
 
-	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
 
 type UserRepository interface {
-	Create(user *model.User) error
-	FindAll() ([]model.User, error)
+	Create(user model.UserReq) error
+	FindAll() ([]model.UserRes, error)
+	FindByEmail(email string) (model.User, error)
 }
 
 type userRepository struct {
@@ -22,24 +23,39 @@ func NewUserRepository(db *gorm.DB) *userRepository {
 	return &userRepository{db}
 }
 
-func (u *userRepository) Create(user *model.User) error {
-	if u.db.Model(user).Where("email = ?", user.Email).Updates(user).RowsAffected == 0 {
-		if err := u.db.Create(user).Error; err != nil {
-			return echo.NewHTTPError(500, err.Error())
-		}
-		return nil
+func (u *userRepository) Create(user model.UserReq) error {
+	found := u.db.Table("users").Where("email = ?", user.Email).First(&model.UserReq{}).RowsAffected > 0
+	if found {
+		return errors.New("user already exist")
 	}
-	return echo.NewHTTPError(409, "email already exist!")
+	
+	if err := u.db.Table("users").Create(user).Error; err != nil {
+		return err
+	}
+
+	return nil
 }
 
-func (u *userRepository) FindAll() ([]model.User,error) {
+func (u *userRepository) FindAll() ([]model.UserRes,error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	
 	defer cancel()
-		
-	var users []model.User
-	err := u.db.WithContext(ctx).Find(&users).Error
+
+	var users []model.UserRes
+
+	err := u.db.WithContext(ctx).Table("users").Find(&users).Error
+
 	if err != nil {
-		return users, echo.NewHTTPError(500, err.Error())
+		return users, err
 	}
 	return users, nil
+}
+
+func (u *userRepository) FindByEmail(email string) (model.User, error) {
+	var user model.User
+	found := u.db.Table("users").Where("email = ?", email).First(&user).RowsAffected > 0
+	if !found {
+		return model.User{} , errors.New("user not found")
+	}
+	return user, nil
 }

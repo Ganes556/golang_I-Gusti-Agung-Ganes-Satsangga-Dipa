@@ -1,108 +1,191 @@
-package usecase_test
+package usecase
 
 import (
+	"errors"
 	"testing"
 
 	"belajar-go-echo/model"
-	"belajar-go-echo/repository"
-	"belajar-go-echo/usecase"
+	pkg "belajar-go-echo/pkg/mock"
+	repository "belajar-go-echo/repository/mock"
 
-	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestCreateUser(t *testing.T) {
-	// create a new instance of the mock repository
+
 	mockRepo := repository.NewMockUserRepo()
-
-	// create a new instance of the usecase, passing the mock repository
-	userRepo := usecase.NewUserUsecase(mockRepo)
-
-	// create a new user
-	userReq := &model.User{
-		Email: "testing@gmail.com",
-		Password: "testtingpassword",
-	}
-
-	// configure the mock repository to return no error when Create is called
-	mockRepo.On("Create", userReq).Return(nil)
-
-	// call the usecase's Create method
-	userRepo.Create(userReq)
-
-	// assert that the error is nil
-	mockRepo.AssertExpectations(t)
+	mockPassword := pkg.NewMockPassword()
 	
-	// userRes := &model.User{
-	// 	ID: uint(1),
-	// 	Email: "testing@gmail.com",
-	// 	Password: "testtingpassword",
-	// }
-}
-
-func TestGetAllUsers(t *testing.T) {
-	// create a new instance of the mock repository
-	mockRepo := repository.NewMockUserRepo()
-
-	// create a new instance of the usecase, passing the mock repository
-	u := usecase.NewUserUsecase(mockRepo)
-
-	// create a slice of user objects
-	users := []model.User{
+	userRepo := NewUserUsecase(mockRepo, mockPassword)
+	tests := []struct{
+		name string
+		payload model.UserReq
+		errMessage string
+		wantErr bool
+	}{
 		{
-			ID: 1,
-			Email: "testing@gmail.com",
-			Password: "testtingpassword",
+			name: "success",
+			payload: model.UserReq{
+				Email:    "testing@gmail.com",
+				Password: "testtingpassword",
+			},
+			wantErr: false,
+		},
+		{
+			name: "failed - email already exist",
+			payload: model.UserReq{
+				Email: "testing@gmail.com",
+				Password: "testtingpassword",
+			},
+			errMessage: "email already exist",
+			wantErr: true,
 		},
 	}
 
-	// configure the mock repository to return the slice of users and no error when FindAll is called
-	mockRepo.On("FindAll").Return(users, nil)
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
 
-	// call the usecase's GetAll method
-	result, err := u.GetAll()
+			mockPassword.On("HashPassword", test.payload.Password).Return(test.payload.Password, nil).Once()
+			if test.wantErr {
+				mockRepo.On("Create", test.payload).Return(errors.New(test.errMessage)).Once()
+				err := userRepo.Create(test.payload)
+				assert.NotNil(t, err)
+				assert.Equal(t, test.errMessage, err.Error())
 
-	// assert that the error is nil
-	assert.Nil(t, err)
-
-	// assert that the result is equal to the slice of users
-	assert.Equal(t, users, result)
-
-	// assert that the mock repository's FindAll method was called
-	mockRepo.AssertCalled(t, "FindAll")
-}
-
-func TestCreateUserError(t *testing.T) {
-	// create a new instance of the mock repository
-	mockRepo := repository.NewMockUserRepo()
-
-	// create a new instance of the usecase, passing the mock repository
-	u := usecase.NewUserUsecase(mockRepo)
-
-	// create a new user
-	user := &model.User{
-		Email: "testing@gmail.com",
-		Password: "testtingpassword",
+			}else {
+				mockRepo.On("Create", test.payload).Return(nil).Once()
+				err := userRepo.Create(test.payload)
+				assert.Nil(t, err)
+			}
+		})
 	}
 
-	// configure the mock repository to return an error when Create is called
-	mockRepo.On("Create", user).Return(echo.NewHTTPError(409, "email already exist!"))
-
-	// call the usecase's Create method
-	err := u.Create(user)
-	// assert that the error is not nil
-	assert.NotNil(t, err)
-	
-	// assert that the mock repository's Create method was called with the user object
-	mockRepo.AssertCalled(t, "Create", user)
 }
 
-// func TestGetAllUsersError(t *testing.T) {
-// 	// create a new instance of the mock repository
-// 	mockRepo := new(repository.mockUserRepository)
+func TestGetAllUsers(t *testing.T) {
 
-// 	// create a new instance of the usecase, passing the mock repository
-// 	u := usecase.NewUserUsecase(mockRepo)
+	mockRepo := repository.NewMockUserRepo()
+	mockPassword := pkg.NewMockPassword()
+	userRepo := NewUserUsecase(mockRepo, mockPassword)
+	
+	tests := []struct{
+		name string
+		expected []model.UserRes
+		wantErr bool
+	}{
+		{
+			name: "success",
+			expected: []model.UserRes{
+				{
+					ID: 1,
+					Email: "testing@gmail.com",
+				},
+			},
+			wantErr: false,
+		},
+		{
+			name: "Failed - error",
+			expected: []model.UserRes{},
+			wantErr: true,
+		},
+	}
 
-// 	// configure the mock repository to return an error when FindAll is called
-// 	mockRepo.On("Find
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			if test.wantErr {
+				mockRepo.On("FindAll").Return(test.expected, errors.New("error")).Once()
+				users, err := userRepo.GetAll()
+				assert.NotNil(t, err)
+				assert.Equal(t, []model.UserRes{}, users)
+			}else {
+				mockRepo.On("FindAll").Return(test.expected, nil).Once()
+				users, err := userRepo.GetAll()
+				assert.Nil(t, err)
+				assert.Equal(t, test.expected, users)
+			}
+		})
+	}
+}
+
+func TestLoginUser(t *testing.T) {
+
+	mockRepo := repository.NewMockUserRepo()
+	mockPassword := pkg.NewMockPassword()
+	userRepo := NewUserUsecase(mockRepo, mockPassword)
+	
+	tests := []struct{
+		name string
+		payload model.UserReq
+		hashPassword string
+		wantErr bool
+		errMessage string
+	}{
+		{
+			name: "success",
+			payload: model.UserReq{
+				Email:    "testing@gmail.com",
+				Password: "testtingpassword",
+			},
+			hashPassword: "$2y$10$Vn4AG3B4MchRuNPlfuOfMuASVJmAYjWznGVihdvS3f.TAbJLliL3W",
+			wantErr: false,
+		},
+		{
+			name: "failed - email not found",
+			payload: model.UserReq{
+				Email:    "testing2@gmail.com",
+				Password: "testtingpassword",
+			},
+			wantErr: true,
+			errMessage: "email not found",
+		},
+		{
+			name: "failed - invalid email or password",
+			payload: model.UserReq{
+				Email:    "testing@gmail.com",
+				Password: "testtingpasswordtest",
+			},
+			hashPassword: "$2y$10$z8sKOVJFS73YbwdBBME0nO1StO3uOB2K/89QUYAj1aK.z0fNrOFW6",
+			wantErr: true,
+			errMessage: "invalid email or password",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			if test.wantErr {
+				switch test.errMessage {
+					case "email not found":
+						mockRepo.On("FindByEmail", test.payload.Email).Return(model.User{}, errors.New(test.errMessage)).Once()
+					case "invalid email or password":
+						mockRepo.On("FindByEmail", test.payload.Email).Return(model.User{
+							ID: 1,
+							Email: test.payload.Email,
+							Password: test.hashPassword,
+						}, nil).Once()
+						mockPassword.On("CheckPasswordHash", test.payload.Password, test.hashPassword).Return(false).Once()
+				}
+
+				token, err := userRepo.Login(test.payload)
+				assert.NotNil(t, err)
+				assert.Equal(t, "", token)
+				assert.Equal(t, test.errMessage, err.Error())
+
+			}else {
+				mockRepo.On("FindByEmail", test.payload.Email).Return(model.User{
+					ID: 1,
+					Email: test.payload.Email,
+					Password: test.hashPassword,
+				}, nil).Once()
+				
+				mockPassword.On("CheckPasswordHash", test.payload.Password, test.hashPassword).Return(true).Once()
+
+				token, err := userRepo.Login(test.payload)
+				
+				assert.Nil(t, err)
+				assert.NotEqual(t, "", token)
+
+			}
+		})
+	}
+
+}

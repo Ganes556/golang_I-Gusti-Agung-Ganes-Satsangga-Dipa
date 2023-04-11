@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
+	
 	err = config.MigrateDB(db)
 	if err != nil {
 		panic(err)
