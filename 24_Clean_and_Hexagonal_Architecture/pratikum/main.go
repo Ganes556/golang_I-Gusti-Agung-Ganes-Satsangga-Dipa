@@ -2,6 +2,7 @@ package main
 
 import (
 	"belajar-go-echo/config"
+	"belajar-go-echo/route"
 
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/labstack/echo/v4"
@@ -20,7 +21,7 @@ func main() {
 
 	e := echo.New()
 
-	NewRoute(e, db)
+	route.NewRoute(e, db)
 	
 	e.Start(":8000")
 }
