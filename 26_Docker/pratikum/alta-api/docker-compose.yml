@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+  db_alta:
+    image: mysql
+    container_name: db_mysql
+    environment:
+      MYSQL_DATABASE: alta_api
+      MYSQL_ROOT_PASSWORD: altapass
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    networks:
+      - alta_api_network
+    volumes:
+      - alta_api_storage:/var/lib/mysql
+
+  app_alta:
+    image: ganes556/alta-api-example:alpine
+    container_name: alta_api
+    env_file:
+      - ./.env
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    restart: on-failure
+    depends_on:
+      - db_alta
+    networks:
+      - alta_api_network
+    volumes:
+      - alta_api_storage:/alta_api_storage
+
+networks:
+  alta_api_network:
+    driver: bridge
+volumes:
+  alta_api_storage:
