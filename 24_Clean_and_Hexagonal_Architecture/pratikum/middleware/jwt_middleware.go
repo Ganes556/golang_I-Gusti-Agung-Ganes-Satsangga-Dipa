@@ -27,7 +27,7 @@ func (jwtS *jwtService) JwtMiddleware() echo.MiddlewareFunc{
 			return new(model.JwtClaims)
 		},
 		Skipper: func(c echo.Context) bool {
-			return c.Request().URL.Path == "/users/login"
+			return c.Request().URL.Path ==  "/users/login" || (c.Request().Method == "POST" && c.Request().URL.Path == "/users")
 		},
 		SigningKey: []byte(os.Getenv("JWT_KEY")),
 		ParseTokenFunc: func(c echo.Context, auth string) (interface{}, error) {
