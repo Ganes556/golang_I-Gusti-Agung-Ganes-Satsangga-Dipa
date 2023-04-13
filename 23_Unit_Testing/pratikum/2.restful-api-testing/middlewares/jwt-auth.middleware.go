@@ -60,7 +60,7 @@ func (j *JWTMiddleware) CreateToken(userId uint, name string) (string, error) {
 func (j *JWTMiddleware) Middleware() echo.MiddlewareFunc{
 	return echojwt.WithConfig(echojwt.Config{
 		Skipper: func(c echo.Context) bool {
-			return c.Request().URL.Path == "/users/login" 
+			return c.Request().URL.Path ==  "/users/login" || (c.Request().Method == "POST" && c.Request().URL.Path == "/users")
 		},
 		SigningKey: []byte(os.Getenv("JWT_SECRET")),
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
