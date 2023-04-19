@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"belajar-go-echo/model"
-	pkg "belajar-go-echo/pkg/mock"
-	repository "belajar-go-echo/repository/mock"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/model"
+	pkg "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/pkg/mock"
+	repository "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/repository/mock"
 
 	"github.com/stretchr/testify/assert"
 )

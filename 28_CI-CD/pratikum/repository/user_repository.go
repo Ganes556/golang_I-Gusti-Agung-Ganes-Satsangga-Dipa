@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"belajar-go-echo/model"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/model"
 	"context"
 	"errors"
 	"time"
