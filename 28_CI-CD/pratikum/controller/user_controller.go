@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"belajar-go-echo/model"
-	"belajar-go-echo/usecase"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/model"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/usecase"
 
 	"github.com/labstack/echo/v4"
 )
