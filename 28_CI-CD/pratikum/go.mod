@@ -1,6 +1,6 @@
 module github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa
 
-go 1.17
+go 1.20
 
 require (
 	github.com/go-playground/validator v9.31.0+incompatible
