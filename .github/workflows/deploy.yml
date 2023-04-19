@@ -27,15 +27,14 @@ jobs:
   deploy-section-28:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-
       - name: Deploy to server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SECTION_28_HOST }}
-          username: ${{ secrets.USERNAME }}
+          username: ${{ secrets.SECTION_28_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: 22
           script: |
+            docker rm $(docker stop $(docker ps -a -q --filter name=ci-cd-app))
+            docker rmi ganes556/ci-cd-example:alpine
             docker run -d -p 8000:8000 --name ci-cd-app ganes556/ci-cd-example:alpine
