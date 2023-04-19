@@ -13,14 +13,15 @@ type User struct {
 	Blogs    []Blog `json:"-" form:"-" gorm:"foreignkey:UserRefer"`
 }
 
+type UserAuth struct {
+	Email string `json:"email" form:"email"  validate:"required"`
+	Password string `json:"password" form:"password" validate:"required"`
+}
+
 func (u *User) BeforeCreate(tx *gorm.DB) error {
-	err := utils.HashPassword(u.Password, &u.Password)
-	if err != nil {
-		return err
-	}
-	return nil
+	return utils.HashPassword(u.Password, &u.Password)
 }
 
 func (u *User) BeforeUpdate(tx *gorm.DB) error {
-	return u.BeforeCreate(tx)
+	return utils.HashPassword(u.Password, &u.Password)
 }

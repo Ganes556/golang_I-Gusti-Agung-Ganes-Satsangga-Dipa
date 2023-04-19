@@ -5,11 +5,43 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/middlewares"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/models"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/services"
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/utils"
 	"github.com/labstack/echo/v4"
 )
+
+func LoginUser(c echo.Context) error {
+	// your solution here
+	var userAuth models.UserAuth
+
+	c.Bind(&userAuth)
+	
+	if err := c.Validate(&userAuth); err != nil {
+		return err
+	}
+
+	var userDB models.User
+	err := services.FindByEmail(userAuth.Email, &userDB)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid email or password")
+	}
+	
+	if err := utils.ComparePassword(userDB.Password,userAuth.Password); err != nil{
+		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid email or password")
+	}
+	
+	token, err := middlewares.CreateToken(userDB.ID, userDB.Name)
+	if err != nil {
+		return err
+	}
+	
+	return c.JSON(http.StatusOK, &echo.Map{
+		"messages": "success login",
+		"token": token,
+	})	
+}
 
 // get all users
 func GetUsers(c echo.Context) error {

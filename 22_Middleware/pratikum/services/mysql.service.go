@@ -29,6 +29,14 @@ func FindById(id int, data interface{}) error {
 	return nil
 }
 
+func FindByEmail(email string, user *models.User) error {
+	err := configs.DB.First(user, "email = ?", email).Error
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+	return nil
+}
+
 func FindBlogByUserId(id int, data interface{}) error {
 	err := configs.DB.Table("blogs").Select("users.name AS penulis, blogs.*").Joins("LEFT JOIN users ON users.id = blogs.user_refer").Where("users.id = ?", id).Scan(data).Error
 	if err != nil {
