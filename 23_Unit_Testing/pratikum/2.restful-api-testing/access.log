@@ -1,0 +1,114 @@
+2023-04-09T07:27:21+08:00 ::1 | GET 200 /users 38.5573ms | 
+2023-04-09T08:30:46+08:00 ::1 | GET 200 /users 31.2193ms | 
+2023-04-09T08:33:08+08:00 ::1 | GET 400 /users 0s | code=400, message=unsupported data type: github.com/labstack/echo/v4.Map: Table not set, please set it like: db.Model(\u0026user) or db.Table(\"users\")
+2023-04-09T08:36:50+08:00 ::1 | GET 200 /users 1.0804ms | 
+2023-04-09T08:37:55+08:00 ::1 | GET 200 /users 32.5663ms | 
+2023-04-09T08:38:05+08:00 ::1 | POST 400 /users 994.1µs | code=400, message=password is required
+2023-04-09T08:45:43+08:00 ::1 | POST 400 /users 0s | code=400, message=password is required
+2023-04-09T08:45:53+08:00 ::1 | POST 200 /users 138.9208ms | 
+2023-04-09T08:47:41+08:00 ::1 | GET 400 /users 46.2264ms | code=400, message=Error 1146 (42S02): Table 'orm_mvc_alta.user_res' doesn't exist
+2023-04-09T08:49:53+08:00 ::1 | GET 400 /users 910.6µs | code=400, message=unsupported data type: github.com/labstack/echo/v4.Map: Table not set, please set it like: db.Model(\u0026user) or db.Table(\"users\")
+2023-04-09T11:01:41+08:00 ::1 | GET 200 /users 21.5904ms | 
+2023-04-09T12:15:04+08:00 ::1 | GET 500 /users 22.7897ms | Error 1146 (42S02): Table 'orm_mvc_alta.user_res' doesn't exist
+2023-04-09T12:15:36+08:00 ::1 | GET 200 /users 1.5932ms | 
+2023-04-09T12:52:35+08:00 ::1 | GET 200 /users 526.8µs | 
+2023-04-09T13:25:36+08:00 ::1 | GET 200 /users 1.1771ms | 
+2023-04-09T13:25:40+08:00 ::1 | GET 404 /users/1 345.3µs | code=404, message=Not Found
+2023-04-09T13:25:44+08:00 ::1 | GET 404 /users/8 0s | code=404, message=Not Found
+2023-04-09T13:25:47+08:00 ::1 | GET 200 /users 1.6833ms | 
+2023-04-09T13:25:54+08:00 ::1 | GET 404 /users/8 0s | code=404, message=Not Found
+2023-04-09T13:26:35+08:00 ::1 | GET 200 /users/8 1.348ms | 
+2023-04-09T13:51:37+08:00 ::1 | GET 500 /users/asdf 32.933ms | user not found
+2023-04-09T13:52:07+08:00 ::1 | GET 500 /users/%20 1.9354ms | user not found
+2023-04-09T13:52:11+08:00 ::1 | GET 500 /users/1 1.9641ms | user not found
+2023-04-09T13:52:15+08:00 ::1 | GET 200 /users/8 1.1565ms | 
+2023-04-09T13:52:49+08:00 ::1 | GET 500 /users/1 1.9668ms | user not found
+2023-04-09T13:53:24+08:00 ::1 | GET 404 /users/1 30.4721ms | code=404, message=user not found
+2023-04-09T13:53:27+08:00 ::1 | GET 404 /users/asdf 1.4555ms | code=404, message=user not found
+2023-04-09T13:53:50+08:00 ::1 | GET 404 /users/%20 1.5856ms | code=404, message=user not found
+2023-04-09T13:53:52+08:00 ::1 | GET 200 /users 1.2489ms | 
+2023-04-09T13:56:53+08:00 ::1 | GET 404 /users/1 36.2307ms | code=404, message=user not found
+2023-04-09T13:56:56+08:00 ::1 | GET 400 /users/1asdf 0s | code=400, message=id must be number
+2023-04-09T17:31:37+08:00 ::1 | POST 405 /users 0s | code=405, message=Method Not Allowed
+2023-04-09T17:31:54+08:00 ::1 | POST 500 /users 32.706ms | Error 1146 (42S02): Table 'orm_mvc_alta.user_reqs' doesn't exist
+2023-04-09T17:36:10+08:00 ::1 | GET 200 /users 604.9µs | 
+2023-04-09T17:36:49+08:00 ::1 | POST 200 /users 11.3646ms | 
+2023-04-09T17:38:36+08:00 ::1 | GET 200 /users 1.0081ms | 
+2023-04-09T17:48:38+08:00 ::1 | GET 200 /users 527µs | 
+2023-04-09T17:48:41+08:00 ::1 | POST 201 /users 3.0884ms | 
+2023-04-09T17:48:46+08:00 ::1 | GET 200 /users 1.3273ms | 
+2023-04-09T21:25:42+08:00 ::1 | GET 200 /users 768.8µs | 
+2023-04-09T21:25:51+08:00 ::1 | DELETE 200 /users/8 10.7021ms | 
+2023-04-09T21:25:57+08:00 ::1 | GET 200 /users 1.2176ms | 
+2023-04-09T21:26:05+08:00 ::1 | GET 200 /users/9 1.6661ms | 
+2023-04-09T21:26:17+08:00 ::1 | PUT 400 /users/9 404µs | code=400, message=email is not valid
+2023-04-09T21:26:27+08:00 ::1 | PUT 200 /users/9 65.8246ms | 
+2023-04-09T21:26:30+08:00 ::1 | GET 200 /users/9 1.5393ms | 
+2023-04-09T21:26:44+08:00 ::1 | PUT 200 /users/9 55.6815ms | 
+2023-04-09T21:40:57+08:00 ::1 | DELETE 400 /users/asdf 522µs | code=400, message=id must be number
+2023-04-09T22:02:16+08:00 ::1 | DELETE 500 /users/99999 18.6025ms | record not found
+2023-04-09T22:10:43+08:00 ::1 | PUT 500 /users/9afasdf 1.2289ms | id must be number
+2023-04-09T22:43:12+08:00 ::1 | POST 201 /users 3.6546ms | 
+2023-04-09T22:43:14+08:00 ::1 | POST 201 /users 3.0167ms | 
+2023-04-09T22:43:15+08:00 ::1 | POST 201 /users 7.7782ms | 
+2023-04-09T22:45:41+08:00 ::1 | GET 200 /users 17.7492ms | 
+2023-04-09T22:45:43+08:00 ::1 | POST 201 /users 59.9808ms | 
+2023-04-09T22:46:19+08:00 ::1 | GET 200 /users 20.5198ms | 
+2023-04-09T22:46:22+08:00 ::1 | POST 201 /users 61.7532ms | 
+2023-04-09T22:46:26+08:00 ::1 | POST 201 /users 63.0629ms | 
+2023-04-09T22:46:30+08:00 ::1 | GET 200 /users 558.4µs | 
+2023-04-09T22:48:55+08:00 ::1 | POST 201 /users 81.5629ms | 
+2023-04-09T22:50:44+08:00 ::1 | POST 409 /users 1.5212ms | code=409, message=email already exist
+2023-04-09T22:50:52+08:00 ::1 | POST 201 /users 66.1961ms | 
+2023-04-09T23:01:24+08:00 ::1 | POST 409 /users 1.4666ms | code=409, message=email already exist
+2023-04-09T23:01:28+08:00 ::1 | POST 201 /users 62.4859ms | 
+2023-04-09T23:01:45+08:00 ::1 | GET 200 /users 1.5738ms | 
+2023-04-10T11:40:10+08:00 ::1 | GET 200 /users 9.1094ms | 
+2023-04-10T11:45:47+08:00 ::1 | GET 200 /users 681.7µs | 
+2023-04-10T11:45:49+08:00 ::1 | GET 200 /users 846.5µs | 
+2023-04-10T11:55:24+08:00 ::1 | GET 200 /users 1.0532ms | 
+2023-04-10T14:11:32+08:00 ::1 | POST 201 /users 155.4558ms | 
+2023-04-10T14:11:43+08:00 ::1 | POST 405 /users/login 0s | code=405, message=Method Not Allowed
+2023-04-10T14:21:52+08:00 ::1 | POST 200 /users/login 31.7924ms | 
+2023-04-10T14:22:16+08:00 ::1 | POST 401 /users/login 1.5336ms | code=401, message=user not found
+2023-04-10T14:22:59+08:00 ::1 | POST 401 /users/login 1.4591ms | code=401, message=user not found
+2023-04-10T14:23:13+08:00 ::1 | POST 401 /users/login 6.3339ms | code=401, message=user not found
+2023-04-10T14:24:09+08:00 ::1 | POST 401 /users/login 4.8702ms | code=401, message=user not found
+2023-04-10T14:24:18+08:00 ::1 | POST 400 /users/login 968µs | code=400, message=email is required
+2023-04-10T14:24:24+08:00 ::1 | POST 400 /users/login 0s | code=400, message=email is required
+2023-04-10T14:24:25+08:00 ::1 | POST 400 /users/login 1.0085ms | code=400, message=email is required
+2023-04-10T14:24:28+08:00 ::1 | POST 400 /users/login 0s | code=400, message=password is required
+2023-04-10T14:25:04+08:00 ::1 | POST 401 /users/login 2.858ms | code=401, message=user not found
+2023-04-10T14:26:10+08:00 ::1 | POST 200 /users/login 37.1084ms | 
+2023-04-10T14:27:24+08:00 ::1 | POST 400 /users/login 574.6µs | code=400, message=email is not valid
+2023-04-10T14:29:24+08:00 ::1 | POST 400 /users/login 530.2µs | code=400, message=email is not valid
+2023-04-10T14:29:30+08:00 ::1 | POST 200 /users/login 66.3967ms | 
+2023-04-10T14:42:36+08:00 ::1 | POST 200 /users/login 0s | 
+2023-04-10T15:08:11+08:00 ::1 | POST 200 /users/login 95.2186ms | 
+2023-04-10T18:15:12+08:00 ::1 | GET 200 /books 1.5221ms | 
+2023-04-10T18:15:16+08:00 ::1 | POST 201 /books 13.4359ms | 
+2023-04-10T18:15:20+08:00 ::1 | GET 200 /books/1 1.5485ms | 
+2023-04-10T18:21:50+08:00 ::1 | POST 409 /books 30.1387ms | code=409, message=book already exist
+2023-04-10T18:21:53+08:00 ::1 | POST 409 /books 1.2724ms | code=409, message=book already exist
+2023-04-10T18:35:22+08:00 ::1 | POST 400 /books 0s | code=400, message=judul is required
+2023-04-10T18:35:28+08:00 ::1 | POST 400 /books 0s | code=400, message=penerbit is required
+2023-04-10T19:06:12+08:00 ::1 | POST 409 /books 33.9626ms | code=409, message=book already exist
+2023-04-10T19:06:37+08:00 ::1 | POST 201 /books 10.7415ms | 
+2023-04-10T19:07:46+08:00 ::1 | POST 201 /books 38.7505ms | 
+2023-04-10T19:08:27+08:00 ::1 | POST 409 /books 38.9697ms | code=409, message=book already exist
+2023-04-10T23:08:23+08:00 ::1 | POST 404 /blogs 0s | code=404, message=Not Found
+2023-04-10T23:09:16+08:00 ::1 | POST 200 /blogs 34.0243ms | 
+2023-04-10T23:09:18+08:00 ::1 | POST 409 /blogs 3.1938ms | code=409, message=blog already exist
+2023-04-10T23:09:26+08:00 ::1 | POST 409 /blogs 2.5085ms | code=409, message=blog already exist
+2023-04-10T23:11:58+08:00 ::1 | GET 200 /blogs 1.4203ms | 
+2023-04-10T23:12:03+08:00 ::1 | GET 200 /blogs/1 1.8215ms | 
+2023-04-10T23:13:55+08:00 ::1 | PUT 400 /blogs/asdf 0s | code=400, message=id must be number
+2023-04-10T23:14:00+08:00 ::1 | PUT 404 /blogs/9999 4.9772ms | code=404, message=blog not found
+2023-04-10T23:15:57+08:00 ::1 | GET 200 /blogs 3.2033ms | 
+2023-04-10T23:16:01+08:00 ::1 | DELETE 200 /blogs/1 11.5246ms | 
+2023-04-10T23:16:07+08:00 ::1 | POST 200 /blogs 12.9003ms | 
+2023-04-10T23:16:10+08:00 ::1 | GET 200 /blogs 1.8214ms | 
+2023-04-10T23:21:02+08:00 ::1 | PUT 200 /blogs/2 26.339ms | 
+2023-04-10T23:21:57+08:00 ::1 | GET 200 /blogs 532.7µs | 
+2023-04-11T00:53:37+08:00 ::1 | GET 200 /blogs/userId/1 40.8691ms | 
+2023-04-11T01:08:35+08:00 ::1 | GET 200 /blogs/userId/1 1.5051ms | 
