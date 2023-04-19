@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  app_alta:
+    image: ganes556/alta-api:alpine
+    container_name: alta-api 
+    env_file:
+      - .env.production
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    restart: on-failure
