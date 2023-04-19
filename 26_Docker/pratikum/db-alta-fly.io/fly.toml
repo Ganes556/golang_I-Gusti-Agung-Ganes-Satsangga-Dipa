@@ -1,0 +1,16 @@
+# fly.toml file generated for db-alta on 2023-04-16T08:07:09+08:00
+
+app = "db-alta"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "sin"
+
+[build]
+  image = "mysql:5.7"
+
+[env]
+  MYSQL_DATABASE = "alta-api"
+
+[mounts]
+  source = "mysqldata"
+  destination = "/data"
