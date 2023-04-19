@@ -37,4 +37,4 @@ jobs:
           script: |
             docker rm $(docker stop $(docker ps -a -q --filter name=ci-cd-app))
             docker rmi ganes556/ci-cd-example:alpine
-            docker run -d -p 8000:8000 --name ci-cd-app ganes556/ci-cd-example:alpine
+            docker run -d -p 8000:8000 --env-file=.env --name ci-cd-app ganes556/ci-cd-example:alpine
