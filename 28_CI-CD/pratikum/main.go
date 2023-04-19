@@ -1,8 +1,8 @@
 package main
 
 import (
-	"belajar-go-echo/config"
-	"belajar-go-echo/route"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/config"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/route"
 
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/labstack/echo/v4"
