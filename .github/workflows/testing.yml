@@ -5,7 +5,7 @@ on:
     branches: ['master']
 
 jobs:
-  build-testing-go:
+  build-testing-section-28-go:
     runs-on: ubuntu-latest
 
     defaults:
