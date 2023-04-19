@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"belajar-go-echo/model"
+	"log"
 	"os"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -26,10 +27,11 @@ func (jwtS *jwtService) JwtMiddleware() echo.MiddlewareFunc{
 			return new(model.JwtClaims)
 		},
 		Skipper: func(c echo.Context) bool {
-			return c.Request().URL.Path ==  "/users/login" || (c.Request().Method == "POST" && c.Request().URL.Path == "/users")
+			return c.Request().URL.Path == "/users/login"
 		},
 		SigningKey: []byte(os.Getenv("JWT_KEY")),
 		ParseTokenFunc: func(c echo.Context, auth string) (interface{}, error) {
+			log.Print(auth)
 			return auth, nil
 		},
 	})
