@@ -1,12 +1,12 @@
 package route
 
 import (
-	"belajar-go-echo/controller"
-	"belajar-go-echo/pkg"
-	"belajar-go-echo/repository"
-	"belajar-go-echo/usecase"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/controller"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/pkg"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/repository"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/usecase"
 
-	"belajar-go-echo/middleware"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/middleware"
 
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"

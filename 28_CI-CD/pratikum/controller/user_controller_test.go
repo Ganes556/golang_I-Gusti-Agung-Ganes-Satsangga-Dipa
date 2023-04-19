@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"belajar-go-echo/model"
-	usecase "belajar-go-echo/usecase/mock"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/model"
+	usecase "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/usecase/mock"
 	"bytes"
 	"encoding/json"
 	"errors"

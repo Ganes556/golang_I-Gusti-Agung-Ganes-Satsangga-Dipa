@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	"belajar-go-echo/model"
-	"belajar-go-echo/pkg"
-	"belajar-go-echo/repository"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/model"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/pkg"
+	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/repository"
 	"errors"
 	"os"
 	"time"
