@@ -1,4 +1,4 @@
-# **Resume Materi Indroduction to Algorithm and Golang**
+# **Rangkuman Materi Indroduction to Algorithm and Golang**
 
 ## **Pada materi basic programming terdapat 3 poin utama yaitu:**
 

@@ -1,4 +1,4 @@
-# **Resume Proffessional Skill 2 Building Resume and CV**
+# **Rangkuman Proffessional Skill 2 Building Rangkuman and CV**
 
 ## **Kesalahan Umum**
 

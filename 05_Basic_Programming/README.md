@@ -1,4 +1,4 @@
-# **Resume Materi Basic Programming**
+# **Rangkuman Materi Basic Programming**
 
 ## **Pada materi basic programming terdapat 3 poin utama yaitu:**
 
