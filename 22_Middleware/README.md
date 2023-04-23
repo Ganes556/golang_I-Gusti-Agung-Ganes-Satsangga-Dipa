@@ -1,10 +1,10 @@
 # **Rangkuman Middleware**
 
-## Middleware
+## **Middleware**
 
 - Sebuah fungsi yang dapat dijalankan sebelum atau sesudah sebuah request dijalankan.
 
-## Middleware pada Echo
+## **Middleware pada Echo**
 
 - ### Middleware dalam echo dibagi menjadi 2:
 

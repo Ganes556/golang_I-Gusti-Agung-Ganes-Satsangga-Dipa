@@ -1,6 +1,6 @@
 # **Rangkuman Materi Concurrent Programming**
 
-## Beberapa Jenis Programming
+## **Beberapa Jenis Programming**
 
 - ### Sequential Programming
 
@@ -32,7 +32,7 @@
 
   - Sebagai mengontrol jalannya concurrent dari beberapa channel
 
-## Race Condition
+## **Race Condition**
 
 - Salah satu kelemanan dari concurrent programming
 - Terjadi ketika terdapat 2 thread yang mengakses memory secara bersamaan, seperti membaca dan menulis data pada memory yang sama

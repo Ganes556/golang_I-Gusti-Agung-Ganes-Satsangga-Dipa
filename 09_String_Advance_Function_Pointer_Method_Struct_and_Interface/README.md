@@ -1,15 +1,15 @@
 # **Rangkuman Materi String, Advance Function, Pointer, Method, Struct and Interface**
 
-# Beberapa hal yang dapat dilakukan pada string golang
+## **Beberapa hal yang dapat dilakukan pada string golang**
 
-## 1. Menghitung panjang string
+### 1. Menghitung panjang string
 
 ```go
   sentence := "Hello World"
   fmt.Println(len(sentence))
 ```
 
-## 2. Compare String
+### 2. Compare String
 
 ```go
   sentence := "Hello World"
@@ -17,21 +17,21 @@
   fmt.Println(sentence == sentence2)
 ```
 
-## 3. Contain, yang ada pada library strings
+### 3. Contain, yang ada pada library strings
 
 ```go
   sentence := "Hello World"
   fmt.Println(strings.Contains(sentence, "Hello"))
 ```
 
-## 4. Slicesing String, berdasarkan index
+### 4. Slicesing String, berdasarkan index
 
 ```go
   sentence := "Hello World"
   fmt.Println(sentence[0:5])
 ```
 
-## 5. Replace String
+### 5. Replace String
 
 ```go
   sentence := "Hello World"
@@ -42,7 +42,7 @@
   fmt.Println(strings.Replace(sentence, "ld", "ll", 1))
 ```
 
-## 6. Insert String
+### 6. Insert String
 
 ```go
   sentence := "Hello World"
@@ -50,9 +50,9 @@
   fmt.Println(insert)
 ```
 
-# Advance Function
+## **Advance Function**
 
-## 1. Variadic Function
+### 1. Variadic Function
 
 - Untuk menskip pembuatan slice sementara
 - Mempermudah dalam pembacaan fungsi yang memiliki banyak parameter
@@ -74,7 +74,7 @@
     }
   ```
 
-## 2. Anonymous Function
+### 2. Anonymous Function
 
 - Fungsi tanpa nama
 - Biasanya digunakan ketika ingin membuat inline function
@@ -90,7 +90,7 @@
     }
   ```
 
-## 3. Closure
+### 3. Closure
 
 - Fungsi yang dapat mengakses variabel diluar fungsi
 - Contoh:
@@ -111,7 +111,7 @@
   }
   ```
 
-## 4. Defer Function
+### 4. Defer Function
 
 - Fungsi yang akan dieksekusi setelah fungsi yang memanggilnya selesai dieksekusi
 - Bersifat LIFO (Last In First Out)
@@ -125,7 +125,7 @@
     }
   ```
 
-# Pointer
+## **Pointer**
 
 - Variable yang menyimpan sebuah alamat memory dari variabel lain
 - Digunakan untuk mengubah nilai variabel yang ada di alamat memory tersebut
@@ -143,9 +143,9 @@
     }
   ```
 
-# Struct dan Interface
+## **Struct dan Interface**
 
-## 1. Struct
+### 1. Struct
 
 - Kumpulan definisi variabel (atau property) dan atau fungsi (atau method), yang dibungkus sebagai tipe data baru dengan nama tertentu (seperti class di OOP)
 - Contoh:
@@ -176,7 +176,7 @@
   }
   ```
 
-# 2. Interface
+### 2. Interface
 
 - Kumpulan definisi method yang tidak memiliki isi (hanya definisi saja), yang dibungkus dengan nama tertentu.
 - Bisa berfungsi untuk menyimpan dinamic type data
@@ -203,7 +203,7 @@
   }
   ```
 
-# Method
+## **Method**
 
 - Fungsi yang menempel pada type (bisa struct atau tipe data lainnya).
 - Method bisa diakses lewat variabel objek.
@@ -229,9 +229,9 @@
     }
   ```
 
-# Error Handling
+## **Error Handling**
 
-## 1. Panic
+### 1. Panic
 
 - Fungsi yang digunakan untuk menghentikan proses program
 - Contoh:
@@ -255,7 +255,7 @@
     }
   ```
 
-## 2. Recover
+### 2. Recover
 
 - Fungsi yang digunakan untuk menangkap error yang terjadi pada fungsi panic
 - Contoh:

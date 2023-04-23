@@ -1,8 +1,6 @@
 # **Rangkuman Materi Basic Programming**
 
-## **Pada materi basic programming terdapat 3 poin utama yaitu:**
-
-## **1. Tentang Golang**
+## **Tentang Golang**
 
 - Bahasa pemrograman open-source yang dikembangkan oleh Google pada tahun 2007.
 - Bertujuan untuk memudahkan proses development, sederhana, handal, dan efisien.
@@ -10,11 +8,11 @@
 - Golang dikembangkan oleh tim yang terdiri dari Rob Pike, Ken Thompson, Robert Griesemer, Ian Lenz Taylor dan Russ Cox.
 - Sering digunakan untuk membuat aplikasi e-commerce, musik player, sosial media, FPI, game engine, dan lain-lain.
 
-## **2. Cara Instal Golang di VS Code**
+## **Cara Instal Golang di VS Code**
 
-Dapat dengan cara Mengunduh [VS Code](https://code.visualstudio.com/download) dan menginstalnya, mengunduh [Golang](https://go.dev/dl/) dan menginstalnya di. Kemudian, setting environment path golang yang di sesuaikan pada os masing-masing.
+- Dapat dengan cara Mengunduh [VS Code](https://code.visualstudio.com/download) dan menginstalnya, mengunduh [Golang](https://go.dev/dl/) dan menginstalnya di. Kemudian, setting environment path golang yang di sesuaikan pada os masing-masing.
 
-## **3. Perintah Terminal dan Penjelasan Sintak dasar di Golang**
+## **Perintah Terminal dan Penjelasan Sintak dasar di Golang**
 
 - Perintah terminal golang
 
@@ -46,7 +44,7 @@ Dapat dengan cara Mengunduh [VS Code](https://code.visualstudio.com/download) da
     - Zero value tiap variabel, dimana **Boolean** : false, **Number** : (float : 0.0), (int : 0), (complex : 0i), **String** : ""
     - Constants variabel yang nilainya tidak dapat diubah dan ada 2 yakni Single Constant dan Multiple Constant
     - Operand, nilai yang akan dioperasikan oleh operator
-    - Pperator, melakukan operasi pada variabel, literal, dan ekspresi)
+    - Pperator, melakukan operasi pada variabel, literal, dan ekspresi
     - Expression kombinasi antara konstanta, variabel, fungsi, dan operator yang mengembalikan sebuah nilai.
 
   - Control structure yang merupakan struktur yang digunakan untuk mengatur alur program yang dimana pada golang hanya terdapat **if**, **switch** dan **for**

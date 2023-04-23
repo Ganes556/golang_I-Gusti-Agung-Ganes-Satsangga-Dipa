@@ -1,6 +1,6 @@
 # **Rangkuman Clean dan Hexagonal Architecture**
 
-## Hexagonal Architecture
+## **Hexagonal Architecture**
 
 - ### Pengertian
 
@@ -12,7 +12,7 @@
   - Domain service, Berisi data dan logika bisnis, seperti model, repository, dan service
   - SPI interface, Berisi hal yang berhubungan dengan database, seperti mysql, redis, third party, dll
 
-## Clean Architecture
+## **Clean Architecture**
 
 - ### Pengertian
 
@@ -40,6 +40,6 @@
   - Controller/Presentation: Menyajikan data dan menghandle interaksi dengan user
   - Drivers/Data: Mengelola data aplikasi seperti menerima data dari network, mengelola data cache
 
-## Ubiquitous Language
+## **Ubiquitous Language**
 
 - Sebuah istilah yang digunakan untuk mendeskripsikan bahasa yang digunakan oleh semua orang yang terlibat dalam suatu project. Ubiquitous Language ini biasanya berupa kata-kata yang digunakan untuk mendeskripsikan suatu hal, seperti kata-kata yang digunakan untuk mendeskripsikan suatu objek, kata-kata yang digunakan untuk mendeskripsikan suatu fungsi, kata-kata yang digunakan untuk mendeskripsikan suatu proses, dll.

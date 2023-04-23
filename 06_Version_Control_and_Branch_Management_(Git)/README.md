@@ -1,10 +1,10 @@
 # **Rangkuman Materi Version Control and Branch Management (Git)**
 
-# Version Control System (VCS)
+## **Version Control System (VCS)**
 
-Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. VCS memungkinkan kita untuk melihat perubahan apa saja yang terjadi pada file, kapan perubahan tersebut terjadi, siapa yang melakukan perubahan tersebut, dan mengembalikan file ke versi sebelumnya.
+- ### Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola perubahan pada sebuah file atau sekumpulan file. VCS memungkinkan kita untuk melihat perubahan apa saja yang terjadi pada file, kapan perubahan tersebut terjadi, siapa yang melakukan perubahan tersebut, dan mengembalikan file ke versi sebelumnya.
 
-# Sejarah Singkat Version Control
+## **Sejarah Singkat Version Control**
 
 1.  Local Version Control (Single User)
 
@@ -38,13 +38,13 @@ Version Control System (VCS) adalah sebuah sistem yang digunakan untuk mengelola
       - Mercurial - 2005
       - Bazaar - 2005
 
-# 3 Dasar Staging Area
+## **3 Dasar Staging Area**
 
 1. Working Directory : Tempat kerja kita saat ini
 2. Staging Area : Tempat untuk menyimpan perubahan yang akan di commit
 3. Repository : Tempat penyimpanan file yang sudah di commit
 
-# Command git
+## **Command git**s
 
 Beberapa command git yang dipelajari pada materi ini yakni,
 
@@ -65,7 +65,7 @@ Beberapa command git yang dipelajari pada materi ini yakni,
 13. git checkout : untuk berpindah branch atau bisa juga untuk pindah sekaligus membuat branch baru dengan menambah opsi `-b`
 14. git merge : untuk menggabungkan branch yang berbeda
 
-# Tips untuk mengoptimasi alur kerja dengan github
+## **Tips untuk mengoptimasi alur kerja dengan github**
 
 1. Hindari perubahaan di branch master, branch master hanya digunakan untuk menyimpan versi yang sudah stabil
 2. Hindari melakukan perubahan secara langsung di branch development, sebaiknya buat branch baru untuk setiap fitur yang akan dikerjakan

@@ -1,6 +1,6 @@
 # Rangkuman Unit Testing
 
-## Unit Testing
+## **Unit Testing**
 
 - ### Pengertian
   Sebuah proses untuk memastikan bahwa setiap unit dari kode program berjalan dengan benar.
@@ -38,7 +38,7 @@
   - Sekumpulan dari positif dan negatif test case yang digunakan untuk mengetes suatu fungsi atau method dari skenario tertentu.
   - Test case memiliki sekumpulan dari pre-condition, steps, expected, status, dan actual result
 
-## Testing Framework
+## **Testing Framework**
 
 - ### Pengertian
   Sebuah library yang digunakan untuk membuat unit test.
@@ -58,7 +58,7 @@
     2. Test Suites (Koleksi dari test cases)
     3. Test Fixtures (Setup & Teardown), Test Cases (Input,Process,Output)
 
-## Implementasi Unit Testing Pada Golang
+## **Implementasi Unit Testing Pada Golang**
 
 - Buat file baru, dengan format `<library>_test.go`. didalam package yang sama
 - Tulis kode berikut pada file tersebut

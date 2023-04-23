@@ -1,6 +1,6 @@
 # **Ringkasan Materi Join, Union, Agregasi, Subquery, Function (DBMS)**
 
-# **1. Join**
+## **1. Join**
 
 - Sebuah klausa untuk mengkombinasikan dari dua atau lebih tabel
 - Jenis Join standar SQL :
@@ -26,7 +26,7 @@
       ON table1.column_name = table2.column_name;
       ```
 
-# **2. Union**
+## **2. Union**
 
 - Menggabungkan hasil dari dua atau lebih SELECT statement
 - Syarat:
@@ -40,7 +40,7 @@
   SELECT column_name FROM table2;
   ```
 
-# **3. Fungsi Agregasi**
+## **3. Fungsi Agregasi**
 
 - Fungsi di mana nilai dari beberapa baris dikelompokan bersama untuk membentuk nilai ringkasan tunggal
 - Beberapa fungsi agregasi yang umum digunakan :
@@ -59,7 +59,7 @@
   SELECT user_id FROM tweets GROUP BY user_id HAVING SUM(retweet_count) > 2;
   ```
 
-# **4. Subquery**
+## **4. Subquery**
 
 - Subquery adalah query yang berada di dalam query lain
 - Subquery dapat berada di dalam SELECT, FROM, WHERE, HAVING, dan JOIN
@@ -69,7 +69,7 @@
   WHERE column_name IN (SELECT column_name FROM table2);
   ```
 
-# **5. Trigger**
+## **5. Trigger**
 
 - Trigger adalah sebuah prosedur yang akan dijalankan secara otomatis ketika terjadi suatu event
 - Jenis-jenis trigger :
@@ -87,7 +87,7 @@
     DELIMITER ;
   ```
 
-# **6. Function**
+## **6. Function**
 
 - Sekumpulan statement yang akan mengembalikan sebuah nilai balik pada pemanggilnya
 - Contoh:

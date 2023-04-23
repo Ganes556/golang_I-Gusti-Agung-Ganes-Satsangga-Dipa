@@ -1,6 +1,6 @@
 # **Rangkuman Introduction to RESTful API**
 
-## API (Application Programming Interface)
+## **API (Application Programming Interface)**
 
 - Sebuah interface yang memungkinkan dua aplikasi untuk berkomunikasi satu sama lain.
 - Integrasi API:
@@ -16,7 +16,7 @@
   - Insomnia
   - etc.
 
-## Design REST API
+## **Design REST API**
 
 - Menggunakan kata benda dibandingkan dengan kata kerja
 - Menamai dengan menggunakan kata benda jamak
@@ -43,7 +43,7 @@
   - https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/overview
   - [etc](https://github.com/public-apis/public-apis)
 
-## Cara Implementasi REST API dengan Go
+## **Cara Implementasi REST API dengan Go**
 
 - Menggunakan package build-in:
   - `net/http` : untuk membuat server dan mengconsume API
@@ -56,7 +56,7 @@
   - go kit
   - [etc](https://github.com/go-kit/kit)
 
-## Reference
+## **Reference**
 
 - [Awesome Package Golang](https://awesome-go.com/)
 - [Check Third Party Lib](https://osv.dev/)

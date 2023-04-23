@@ -1,11 +1,11 @@
 # **Rangkuman Data Structure**
 
-# Struktur Data
+## **Struktur Data**
 
 - Struktur data adalah cara untuk menyimpan dan mengorganisasi data agar dapat digunakan secara efisien dan efektif
 - Struktur data di golang terdiri dari 3 jenis yaitu array, slice dan map
 
-# Array
+## **Array**
 
 - Struktur data yang berisi kumpulan data yang memiliki tipe data yang sama
 - Memiliki ukuran yang tetap
@@ -36,7 +36,7 @@
     }
   ```
 
-# Slice
+## **Slice**
 
 - Sama dengan array namun memiliki ukuran yang dinamis
 - Merupakan mereferensi dari sebuah array
@@ -58,7 +58,7 @@
     slice3 = copy(slice3, slice1)
   ```
 
-# Map
+## **Map**
 
 - Memiliki struktur data yang berupa pasangan **key** dan **value**, dimana key itu merupakan nilai yang unik
 - Cara deklarasi map pada golang:
@@ -84,7 +84,7 @@
     }
   ```
 
-# Perbedaan Array, Slice dan Map
+## **Perbedaan Array, Slice dan Map**
 
 | Fitur               | Array          | Slice           | Map                     |
 | ------------------- | -------------- | --------------- | ----------------------- |
@@ -94,7 +94,7 @@
 | Akses Elemen        | arr[index]     | slice[index]    | map1["key"]             |
 | Referensi           | By value       | By reference    | By reference            |
 
-# Fungsi
+## **Fungsi**
 
 - Fungsi adalah sekumpulan perintah yang dipanggil dipanggil dengan nama tertentu dan dapat dipanggil berulang-ulang
 - Berfungsi untuk membuat clean code, mempermudah dalam pemanggilan perintah dan modular code

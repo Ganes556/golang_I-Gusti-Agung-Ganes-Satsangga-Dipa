@@ -1,16 +1,16 @@
 # Rangkuman Materi Comunication Skill
 
-# Komunikasi Efektif
+## **Komunikasi Efektif**
 
 - Proses pertukaran informasi baik verbal maupun non-verbal di dalam sebuah organisasi dengan tujuan menyampaikan, menerima dan memahami sebuah pesan dengan baik
 
-# Fungsi Komunikasi Efektif
+## **Fungsi Komunikasi Efektif**
 
 - Meningkatkan efektivitas kerja
 - Meningkatkan kepuasan karyawan
 - Mengurangi tingkat pergantian karyawan
 
-# 5W Element Komunikasi
+## **5W Element Komunikasi**
 
 - Who (Siapa) : Siapa yang memberikan pesan
 - (Says) What (Apa) : Pesan apa yang akan disampaikan
@@ -18,7 +18,7 @@
 - (To) Whom (Siapa) : Siapa yang akan menerima pesan
 - (With What) Effect
 
-# 7C Komunikasi
+## **7C Komunikasi**
 
 - **Completeness** (Kelengkapan) : Menyampaikan semua fakta yang dibutukan oleh audiens. Informasi yang lengkap meliputi :
 
@@ -62,9 +62,9 @@
   - Menggunakan bahas ayang benar dan sesuai
   - Memvalidasi ketepatan dan keakuratan fakta dan angka
 
-# Jenis Komunikasi
+## **Jenis Komunikasi**
 
-- ## Synchronous (Komunikasi Real Time)
+- ### Synchronous (Komunikasi Real Time)
 
   - Komunikasi yang dilakukan secara langsung dan bersamaan
   - Pro :
@@ -84,7 +84,7 @@
 
   - Contoh : Telepon, Video Conference (zoom, google meet, dll)
 
-- ## Asynchronous (Komunikasi Non Real Time)
+- ### Asynchronous (Komunikasi Non Real Time)
 
   - Komunikasi yang dilakukan secara tidak langsung dan tidak bersamaan
   - Pro :
@@ -108,7 +108,3 @@
     - Jadikan sebagai budaya
     - Komunikasikan jam kerja
   - Contoh : Email, Chat, SMS, dll
-
-# Referensi
-
-- [Google Slide Alterra](https://docs.google.com/presentation/d/e/2PACX-1vT2bp2bt7IuOixqwcOmoipr-6OvxuAglWAcWc0-Gb3pautQ4C3gBkWd4jh_36IfL9pG1pRQC-LV82NI/embed?+frameborder&slide=id.g8b7cc04827_0_21)

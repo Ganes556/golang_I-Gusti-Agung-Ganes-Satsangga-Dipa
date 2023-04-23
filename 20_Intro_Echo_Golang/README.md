@@ -1,6 +1,6 @@
 # **Rangkuman Introduction Echo Golang**
 
-## Framework Echo
+## **Framework Echo**
 
 - performa tinggi, ekstensibilitas, dan minimalist
 - keuntungan:
@@ -11,7 +11,7 @@
   - data binding
 - struktur pada framework echo bebas yang bisa diintegrasikan dengan third party lib lainnya
 
-## Basic Echo
+## **Basic Echo**
 
 - `echo.New()` untuk membuat instance echo
 - routing adalah url yang akan diakses oleh user, dapat berupa GET, POST, PUT, DELETE, dan lainnya

@@ -17,7 +17,7 @@
 
 ## **Command yang sering digunakan**
 
-### **1. Directory**
+### 1. Directory
 
 - **cd** : untuk berpindah direktori
   - urutan permissions file : file_type:owner:group:other
@@ -38,7 +38,7 @@
   - hard link : link yang mengarah ke file yang sama (file masih bisa dibuka walaupun file yang di link dihapus)
   - soft link : link yang mengarah ke file yang berbeda (file tidak bisa dibuka jika file yang di link dihapus)
 
-### **2. File**
+### 2. File
 
 - Create
   - **touch** : untuk membuat file kosong
@@ -62,7 +62,7 @@
     - normal user : diperbolehkan untuk mengubah file yang dimiliki sendiri
     - root user : diperbolehkan untuk mengubah file yang dimiliki orang lain
 
-### **3. Network**
+### 3. Network
 
 - **ping** : untuk mengecek koneksi ke host
 - **ifconfig** : untuk melihat konfigurasi jaringan
@@ -74,7 +74,7 @@
 - **telnet** : untuk mengakses host lain
 - **nmap** : untuk melakukan scanning jaringan
 
-### **4. Utility**
+### 4. Utility
 
 - **man** : untuk melihat manual command
 - **env** : untuk melihat environment variable
