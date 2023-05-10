@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 )
@@ -14,13 +14,13 @@ type Product struct {
 	Category string  `json:"category"`
 }
 
-func Get(url string, ch chan<- []Product) {	
+func Get(url string, ch chan<- []Product) {	// ch chan<- []Product artinya ch adalah channel yang hanya bisa menerima data
 	res, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
