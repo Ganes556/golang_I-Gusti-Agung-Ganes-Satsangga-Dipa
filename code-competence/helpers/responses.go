@@ -15,8 +15,8 @@ func ResponseSuccessWithoutData(ctx echo.Context, statusCode int, message string
 	})
 }
 
-func ResponseError(statusCode int, err error) error {
-	return echo.NewHTTPError(statusCode, map[string]interface{}{
+func ResponseError(ctx echo.Context, statusCode int, err error) error {
+	return ctx.JSON(statusCode, map[string]interface{}{
 		"message": err.Error(),
 	})
 }

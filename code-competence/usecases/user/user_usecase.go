@@ -8,10 +8,10 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (uc *userUsecase) Login(input dto.LoginDTO) (entities.User, error) {
+func (u *userUsecase) Login(input dto.LoginDTO) (entities.User, error) {
 
 	
-	user, err := uc.userRepo.GetByEmail(input.Email)
+	user, err := u.userRepo.GetByEmail(input.Email)
 
 	if err != nil {
 		return user, errors.New("invalid email or password")
@@ -26,9 +26,9 @@ func (uc *userUsecase) Login(input dto.LoginDTO) (entities.User, error) {
 	return user, nil
 }
 
-func (uc *userUsecase) Register(input dto.RegisterDTO) error {
+func (u *userUsecase) Register(input dto.RegisterDTO) error {
 	
-	_, err := uc.userRepo.GetByEmail(input.Email)
+	_, err := u.userRepo.GetByEmail(input.Email)
 
 	if err == nil {
 		return errors.New("email already exist")
@@ -40,7 +40,7 @@ func (uc *userUsecase) Register(input dto.RegisterDTO) error {
 		Name: input.Name,
 	}
 
-	err = uc.userRepo.Create(user)
+	err = u.userRepo.Create(user)
 
 	if err != nil {
 		return errors.New("internal server error")

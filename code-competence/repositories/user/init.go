@@ -2,12 +2,11 @@ package user
 
 import (
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/entities"
-	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type UserRepository interface {
-	GetByID(id uuid.UUID) (entities.User, error)
+	GetByID(id uint) (entities.User, error)
 	GetByEmail(email string) (entities.User, error)
 	Create(ut entities.User) error
 }

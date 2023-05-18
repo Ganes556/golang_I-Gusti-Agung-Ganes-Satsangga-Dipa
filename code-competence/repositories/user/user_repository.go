@@ -2,20 +2,19 @@ package user
 
 import (
 	"github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/entities"
-	"github.com/google/uuid"
 )
 
-func (ur *userRepository) GetByID(id uuid.UUID) (entities.User, error) {
+func (u *userRepository) GetByID(id uint) (entities.User, error) {
 	user := entities.User{}
-	err := ur.db.First(&user, "id = ?", id)
+	err := u.db.First(&user, "id = ?", id)
 	if err != nil {
 		return user, err.Error
 	}
 	return user, nil
 }
-func (ur *userRepository) GetByEmail(email string) (entities.User, error) {
+func (u *userRepository) GetByEmail(email string) (entities.User, error) {
 	user := entities.User{}
-	err := ur.db.First(&user, "email = ?", email).Error
+	err := u.db.First(&user, "email = ?", email).Error
 	if err != nil {
 		return user, err
 	}
