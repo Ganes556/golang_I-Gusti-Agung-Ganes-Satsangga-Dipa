@@ -1,4 +1,4 @@
-package app
+package main
 
 import (
 	itemHandler "github.com/Ganes556/golang_I-Gusti-Agung-Ganes-Satsangga-Dipa/handlers/item"

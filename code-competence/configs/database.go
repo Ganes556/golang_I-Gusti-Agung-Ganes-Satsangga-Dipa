@@ -2,7 +2,6 @@ package configs
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -27,7 +26,7 @@ func InitDB() *gorm.DB{
 	}
 
 	migrateDDL(db)
-	initialDataDML(db)
+	initialDataCategoryDML(db)
 	return db
 }
 
@@ -37,30 +36,21 @@ func migrateDDL(db *gorm.DB) {
 	db.AutoMigrate(&entities.User{})
 }
 
-func initialDataDML(db *gorm.DB) {
-	query, err := ioutil.ReadFile("db/initial_data.sql")
+func initialDataCategoryDML(db *gorm.DB) {
 
-	if err != nil {
-		panic(err)
-	}
-	
 	var count int64
 	db.Model(&entities.Category{}).Count(&count)
 	
 	if count > 0 {
 		return
 	}
-
-	statements := strings.Split(string(query), ";")
 	
-	for _, statement := range statements {
-		if statement == "" {
-			continue
-		}
-		
-		if err := db.Exec(statement).Error; err != nil {
-			panic(err)
-		}
+	categories :=  []string{"Laptop", "Computer", "Accessories", "Mobile", "Tablet", "Camera", "TV"}
+
+	for _, category := range categories {
+		db.Create(&entities.Category{
+			Name: strings.ToLower(category),
+		})
 	}
 
 }

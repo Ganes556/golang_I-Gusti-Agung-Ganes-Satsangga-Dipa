@@ -1,0 +1,588 @@
+openapi: 3.0.0
+info:
+  title: Toko-Electronic
+  version: 1.0.0
+servers:
+  - description: Server
+    url: '{schema}://{url}:{port}'
+    variables:
+      schema:
+        default: http
+      url:
+        default: localhost
+      port:
+        default: '8000'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: items
+  - name: users
+paths:
+  /items/{id}:
+    get:
+      tags:
+        - items
+      summary: Get item
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 580f80c4-9e9a-4741-9119-7e2e0a903e0
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 05:22:23 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '181'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 580f80c4-9e9a-4741-9119-7e2e0a903e0b
+                  category_id: 4
+                  name: nokia
+                  price: 500000
+                  stock: 999
+                  description: hp tahan banting
+                message: get item by id success
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 05:22:48 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '32'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: id must be a uuid
+    put:
+      tags:
+        - items
+      summary: Update item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: nokiting
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 580f80c4-9e9a-4741-9119-7e2e0a903e0b
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 05:41:13 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '34'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: update item success
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 05:43:50 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '32'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: id must be a uuid
+    delete:
+      tags:
+        - items
+      summary: Delete item
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 580f80c4-9e9a-4741-9119-7e2e0a903e0b
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 07:32:21 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '34'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: delete item success
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 07:31:29 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '28'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: token expired
+  /items:
+    post:
+      tags:
+        - items
+      summary: Create item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                category_id: 4
+                name: samsul 3369
+                price: 9999
+                stock: 999
+                description: urusan gaya samsul pastinya
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 05:19:08 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '34'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: create item success
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 05:27:34 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '38'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: category_id is required
+    get:
+      tags:
+        - items
+      summary: Get items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: keyword
+          in: query
+          schema:
+            type: string
+          example: a
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 04:34:58 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '752'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: success get all
+                  value:
+                    data:
+                      - id: 28e1b90691d5468fb7bfdb2499879261
+                        category_id: 4
+                        name: iphone 5s
+                        price: 1500000
+                        stock: 999
+                        description: hp lama tapi masih kencang
+                      - id: 7f8991ccc9be43398851f39d09196352
+                        category_id: 4
+                        name: nokia
+                        price: 115000
+                        stock: 9999
+                        description: hp kuat tahan lama
+                    message: get all items success
+                example-1:
+                  summary: success by keyword
+                  value:
+                    data:
+                      - id: 7f8991ccc9be43398851f39d09196352
+                        category_id: 4
+                        name: nokia
+                        price: 115000
+                        stock: 9999
+                        description: hp kuat tahan lama
+                    message: get item by keyword success
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 04:57:11 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '28'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: invalid token
+  /items/category/{category_id}:
+    get:
+      tags:
+        - items
+      summary: Get by category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: category_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 07:41:38 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '341'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 7fbd928e-7f3b-43c4-96e7-daa2e309fc94
+                    category_id: 4
+                    name: samsul 3369
+                    price: 9999
+                    stock: 999
+                    description: urusan gaya samsul pastinya
+                  - id: dd6c9dea-300b-477b-b1a1-d7bc12256636
+                    category_id: 4
+                    name: nokia
+                    price: 500000
+                    stock: 999
+                    description: hp tahan banting
+                message: get item by category success
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Thu, 18 May 2023 08:46:16 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '62'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: category_id must be a number and greater than 0
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: testing@gmail.com
+                password: testing12345
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 06:01:08 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '185'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  token: >-
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InRlc3RpbmciLCJleHAiOjE2ODQzODk2Njh9.CRAETrqFr3_Lm6a3GoNVdi0TZJVqxaqYqL_LvS-xWbk
+                message: login success
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 06:02:58 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '33'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: email is not valid
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 06:04:20 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '40'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: invalid email or password
+  /users/register:
+    post:
+      tags:
+        - users
+      summary: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: testing
+                email: testing@gmail.com
+                password: testing1234
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 05:14:26 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '31'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: register success
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 05:16:17 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '53'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 'failed: password less than 8 chars'
+                  value:
+                    message: password must be at least 8 characters
+                example-1:
+                  summary: 'failed: invalid email'
+                  value:
+                    message: email is not valid
+                example-2:
+                  summary: 'failed: required'
+                  value:
+                    message: name is required
+        '409':
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 17 May 2023 05:53:06 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '34'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: email already exist
