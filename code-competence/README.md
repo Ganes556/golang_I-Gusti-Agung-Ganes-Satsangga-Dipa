@@ -13,5 +13,8 @@ note: make sure you add the .env file in the root directory
 
 ## Server Endpoints
 
-- `http://ec2-13-229-98-157.ap-southeast-1.compute.amazonaws.com/` - Swagger UI endpoint
-- `http://ec2-13-229-98-157.ap-southeast-1.compute.amazonaws.com:8000` - API endpoint
+- Swagger UI
+  - `http://ec2-13-229-98-157.ap-southeast-1.compute.amazonaws.com`
+  - note: ubah url dengan endpoint API, pastikan cors browser allowed atau gunakan firefox untuk melakukan request dari swaggernya
+- API
+  - `http://ec2-13-229-98-157.ap-southeast-1.compute.amazonaws.com:8000`
