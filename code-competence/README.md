@@ -1,20 +1,23 @@
 # Remidial code-competence
 
-## How to run with docker compose
+## Cara menjalankan app dengan docker compose
 
 - `docker-compose up -d`
 
-note: make sure you add the .env file in the root directory
+note: pastikan menambahkan file .env di root directory
 
 ## Local Endpoints
 
-- `http://localhost` - Swagger UI endpoint
-- `http://localhost:8000` - API endpoint
+- Swagger UI
+  - `http://localhost`
+- API
+  - `http://localhost:8000`
 
 ## Server Endpoints
 
 - Swagger UI
+
   - `http://ec2-13-229-98-157.ap-southeast-1.compute.amazonaws.com`
-  - note: ubah url dengan endpoint API, pastikan cors browser allowed atau gunakan firefox untuk melakukan request dari swaggernya
+
 - API
   - `http://ec2-13-229-98-157.ap-southeast-1.compute.amazonaws.com:8000`

@@ -510,7 +510,7 @@ paths:
               example:
                 name: testing
                 email: testing@gmail.com
-                password: testing1234
+                password: testing12345
       responses:
         '200':
           description: OK
