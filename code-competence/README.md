@@ -17,7 +17,7 @@ note: pastikan menambahkan file .env di root directory
 
 - Swagger UI
 
-  - `http://ec2-52-77-30-160.ap-southeast-1.compute.amazonaws.com`
+  - `http://ec2-52-77-30-160.ap-southeast-1.compute.amazonaws.com` (deprecated)
 
 - API
-  - `https://ec2-52-77-30-160.ap-southeast-1.compute.amazonaws.com:8000`
+  - `https://ec2-52-77-30-160.ap-southeast-1.compute.amazonaws.com:8000` (deprecated)
